@@ -97,40 +97,40 @@ const IntegrationsView = () => {
   const connectedCount = integrations.filter(int => int.connected).length;
 
   return (
-    <div className="h-full flex flex-col bg-gradient-to-br from-indigo-50 to-purple-50">
+    <div className="h-full flex flex-col bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-darkTheme-bg dark:to-darkTheme-border transition-colors duration-200">
 
       {/* Header */}
-      <div className="bg-white border-b border-neutral-200 px-8 py-6 shadow-sm">
+      <div className="bg-white dark:bg-darkTheme-card border-b border-neutral-200 dark:border-darkTheme-border px-8 py-6 shadow-sm transition-colors duration-200">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Plug className="text-secondary" size={32} />
+            <Plug className="text-secondary dark:text-secondary" size={32} />
             <div>
-              <h2 className="text-3xl font-bold text-primary-dark">
+              <h2 className="text-3xl font-bold text-primary-dark dark:text-primary-light">
                 Integraciones
               </h2>
-              <p className="text-neutral-600">
+              <p className="text-neutral-600 dark:text-darkTheme-muted">
                 Conecta tus herramientas de trabajo favoritas
               </p>
             </div>
           </div>
           <div className="text-right">
-            <p className="text-3xl font-bold text-primary">{connectedCount}</p>
-            <p className="text-sm text-neutral-600">Conectadas</p>
+            <p className="text-3xl font-bold text-primary dark:text-primary-light">{connectedCount}</p>
+            <p className="text-sm text-neutral-600 dark:text-darkTheme-muted">Conectadas</p>
           </div>
         </div>
       </div>
 
       {/* Filtros por categoría */}
-      <div className="bg-white border-b border-neutral-200 px-8 py-4">
+      <div className="bg-white dark:bg-darkTheme-card border-b border-neutral-200 dark:border-darkTheme-border px-8 py-4 transition-colors duration-200">
         <div className="flex gap-2 overflow-x-auto">
           {categories.map(category => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 ${
                 selectedCategory === category
                   ? 'bg-primary text-white'
-                  : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                  : 'bg-neutral-100 dark:bg-darkTheme-bg text-neutral-700 dark:text-darkTheme-text hover:bg-neutral-200 dark:hover:bg-darkTheme-border'
               }`}
             >
               {category}
@@ -145,30 +145,30 @@ const IntegrationsView = () => {
           {filteredIntegrations.map(integration => (
             <div
               key={integration.id}
-              className={`card hover:shadow-xl transition-all ${
-                integration.connected ? 'border-2 border-green-300' : ''
+              className={`card hover:shadow-xl transition-all duration-200 dark:bg-darkTheme-card dark:border-darkTheme-border ${
+                integration.connected ? 'border-2 border-green-300 dark:border-green-500' : ''
               }`}
             >
               {/* Header con icono y gradiente */}
-              <div className={`bg-gradient-to-r ${integration.color} rounded-lg p-4 mb-4 text-white relative`}>
+              <div className={`bg-gradient-to-r ${integration.color} rounded-lg p-4 mb-4 text-white relative transition-colors duration-200`}>
                 <div className="text-5xl mb-2">{integration.icon}</div>
                 <h3 className="font-bold text-lg">{integration.name}</h3>
 
                 {/* Indicador de conexión */}
                 {integration.connected && (
-                  <div className="absolute top-2 right-2 bg-green-500 text-white rounded-full p-1">
+                  <div className="absolute top-2 right-2 bg-green-500 dark:bg-green-600 text-white rounded-full p-1">
                     <Check size={16} />
                   </div>
                 )}
               </div>
 
               {/* Descripción */}
-              <p className="text-sm text-neutral-600 mb-4">
+              <p className="text-sm text-neutral-600 dark:text-darkTheme-muted mb-4">
                 {integration.description}
               </p>
 
               {/* Categoría */}
-              <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs rounded-full mb-4">
+              <span className="inline-block px-3 py-1 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light text-xs rounded-full mb-4 transition-colors duration-200">
                 {integration.category}
               </span>
 
@@ -176,7 +176,7 @@ const IntegrationsView = () => {
               <div className="flex gap-2">
                 <button
                   onClick={() => toggleConnection(integration.id)}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg font-medium transition-all ${
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg font-medium transition-all duration-200 ${
                     integration.connected
                       ? 'bg-red-500 text-white hover:bg-red-600'
                       : 'bg-primary text-white hover:bg-primary/90'
@@ -197,7 +197,7 @@ const IntegrationsView = () => {
 
                 {integration.connected && (
                   <button
-                    className="p-2 bg-neutral-100 text-neutral-600 rounded-lg hover:bg-neutral-200 transition-colors"
+                    className="p-2 bg-neutral-100 dark:bg-darkTheme-bg text-neutral-600 dark:text-darkTheme-muted rounded-lg hover:bg-neutral-200 dark:hover:bg-darkTheme-border transition-colors duration-200"
                     title="Configurar"
                   >
                     <Settings size={18} />
@@ -209,7 +209,7 @@ const IntegrationsView = () => {
               {integration.connected && (
                 <a
                   href="#"
-                  className="flex items-center justify-center gap-2 mt-3 text-sm text-primary hover:text-primary-dark transition-colors"
+                  className="flex items-center justify-center gap-2 mt-3 text-sm text-primary dark:text-primary-light hover:text-primary-dark dark:hover:text-primary transition-colors duration-200"
                 >
                   <ExternalLink size={14} />
                   Ver configuración
@@ -221,8 +221,8 @@ const IntegrationsView = () => {
 
         {filteredIntegrations.length === 0 && (
           <div className="text-center py-16">
-            <Plug size={64} className="mx-auto text-neutral-300 mb-4" />
-            <p className="text-neutral-500">No hay integraciones en esta categoría</p>
+            <Plug size={64} className="mx-auto text-neutral-300 dark:text-neutral-600 mb-4" />
+            <p className="text-neutral-500 dark:text-darkTheme-muted">No hay integraciones en esta categoría</p>
           </div>
         )}
       </div>

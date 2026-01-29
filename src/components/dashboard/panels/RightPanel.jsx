@@ -60,15 +60,15 @@ const RightPanel = ({ onOpenTab }) => {
   };
 
   return (
-    <aside className="h-full bg-white border-l border-neutral-200 flex flex-col shadow-lg relative">
+    <aside className="h-full bg-white dark:bg-darkTheme-bg border-l border-neutral-200 dark:border-darkTheme-border flex flex-col shadow-lg relative transition-colors duration-200">
 
       {/* Botón de toggle con icono de libro */}
       <div className="absolute -left-6 top-8 z-10">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           onMouseEnter={() => setIsExpanded(true)}
-          className={`bg-white border-2 border-primary rounded-l-xl p-3 shadow-lg transition-all duration-300 transform hover:scale-110 ${
-            isExpanded ? 'bg-primary' : 'hover:bg-primary-light'
+          className={`bg-white dark:bg-darkTheme-card border-2 border-primary dark:border-primary-light rounded-l-xl p-3 shadow-lg transition-all duration-300 transform hover:scale-110 ${
+            isExpanded ? 'bg-primary dark:bg-primary-light' : 'hover:bg-primary-light dark:hover:bg-primary'
           }`}
           title="Herramientas"
         >
@@ -82,16 +82,16 @@ const RightPanel = ({ onOpenTab }) => {
       </div>
 
       {/* Header del panel */}
-      <div className="p-6 border-b border-neutral-200 bg-gradient-to-br from-primary/5 to-secondary/5">
+      <div className="p-6 border-b border-neutral-200 dark:border-darkTheme-border bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary rounded-lg">
             <BookOpen size={24} className="text-white" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-primary-dark">
+            <h2 className="text-lg font-bold text-primary-dark dark:text-primary-light">
               Herramientas
             </h2>
-            <p className="text-xs text-neutral-500">
+            <p className="text-xs text-neutral-500 dark:text-darkTheme-muted">
               Gestiona tu trabajo diario
             </p>
           </div>
@@ -147,17 +147,17 @@ const RightPanel = ({ onOpenTab }) => {
           {tools.map((tool) => (
             <div
               key={`info-${tool.id}`}
-              className="bg-neutral-50 rounded-lg p-3 border-l-4 border-primary/30 hover:border-primary transition-colors duration-200"
+              className="bg-neutral-50 dark:bg-darkTheme-card rounded-lg p-3 border-l-4 border-primary/30 dark:border-primary/40 hover:border-primary dark:hover:border-primary-light transition-colors duration-200"
             >
               <div className="flex items-start gap-3">
                 <div className={`p-2 rounded-lg bg-gradient-to-br ${tool.color}`}>
                   <tool.icon size={16} className="text-white" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-sm font-semibold text-neutral-800">
+                  <h4 className="text-sm font-semibold text-neutral-800 dark:text-darkTheme-text">
                     {tool.title}
                   </h4>
-                  <p className="text-xs text-neutral-600 mt-1">
+                  <p className="text-xs text-neutral-600 dark:text-darkTheme-muted mt-1">
                     {tool.description}
                   </p>
                 </div>
@@ -167,27 +167,27 @@ const RightPanel = ({ onOpenTab }) => {
         </div>
 
         {/* Tips */}
-        <div className="mt-6 p-4 bg-gradient-to-br from-primary-light/20 to-secondary-light/20 rounded-lg border border-primary/20">
-          <h4 className="text-sm font-bold text-primary-dark mb-2 flex items-center gap-2">
+        <div className="mt-6 p-4 bg-gradient-to-br from-primary-light/20 to-secondary-light/20 dark:from-primary/10 dark:to-secondary/10 rounded-lg border border-primary/20 dark:border-primary/30">
+          <h4 className="text-sm font-bold text-primary-dark dark:text-primary-light mb-2 flex items-center gap-2">
             <Lightbulb size={16} />
             Tip del día
           </h4>
-          <p className="text-xs text-neutral-700">
+          <p className="text-xs text-neutral-700 dark:text-darkTheme-text">
             Organiza tus tareas por prioridad y sincronízalas con tu calendario para una mejor gestión del tiempo.
           </p>
         </div>
       </div>
 
       {/* Footer con estadísticas */}
-      <div className="p-4 border-t border-neutral-200 bg-neutral-50">
+      <div className="p-4 border-t border-neutral-200 dark:border-darkTheme-border bg-neutral-50 dark:bg-darkTheme-card">
         <div className="grid grid-cols-2 gap-2 text-center">
-          <div className="bg-white rounded-lg p-3 shadow-sm">
-            <p className="text-2xl font-bold text-primary">12</p>
-            <p className="text-xs text-neutral-600">Tareas Activas</p>
+          <div className="bg-white dark:bg-darkTheme-bg rounded-lg p-3 shadow-sm">
+            <p className="text-2xl font-bold text-primary dark:text-primary-light">12</p>
+            <p className="text-xs text-neutral-600 dark:text-darkTheme-muted">Tareas Activas</p>
           </div>
-          <div className="bg-white rounded-lg p-3 shadow-sm">
-            <p className="text-2xl font-bold text-secondary">5</p>
-            <p className="text-xs text-neutral-600">Ideas Guardadas</p>
+          <div className="bg-white dark:bg-darkTheme-bg rounded-lg p-3 shadow-sm">
+            <p className="text-2xl font-bold text-secondary dark:text-secondary-light">5</p>
+            <p className="text-xs text-neutral-600 dark:text-darkTheme-muted">Ideas Guardadas</p>
           </div>
         </div>
       </div>

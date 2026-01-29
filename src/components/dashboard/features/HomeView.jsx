@@ -20,7 +20,7 @@ const HomeView = () => {
     <div className="p-8 max-w-7xl mx-auto space-y-8">
 
       {/* Saludo personalizado */}
-      <div className="bg-gradient-to-r from-primary via-secondary to-primary-light rounded-2xl p-8 text-white shadow-xl">
+      <div className="bg-gradient-to-r from-primary via-secondary to-primary-light dark:from-primary-light dark:via-secondary dark:to-primary rounded-2xl p-8 text-white shadow-xl transition-colors duration-200">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-4xl font-bold mb-2">
@@ -40,56 +40,56 @@ const HomeView = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
         {/* Tareas pendientes */}
-        <div className="card bg-gradient-to-br from-blue-50 to-blue-100 border-l-4 border-blue-500">
+        <div className="card bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border-l-4 border-blue-500 dark:border-blue-400 transition-colors duration-200">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm text-blue-600 font-medium mb-1">Tareas Pendientes</p>
-              <p className="text-3xl font-bold text-blue-900">12</p>
-              <p className="text-xs text-blue-600 mt-2">3 para hoy</p>
+              <p className="text-sm text-blue-600 dark:text-blue-400 font-medium mb-1">Tareas Pendientes</p>
+              <p className="text-3xl font-bold text-blue-900 dark:text-blue-300">12</p>
+              <p className="text-xs text-blue-600 dark:text-blue-400 mt-2">3 para hoy</p>
             </div>
-            <div className="bg-blue-500 p-3 rounded-lg">
+            <div className="bg-blue-500 dark:bg-blue-600 p-3 rounded-lg transition-colors duration-200">
               <CheckCircle className="text-white" size={24} />
             </div>
           </div>
         </div>
 
         {/* Ideas guardadas */}
-        <div className="card bg-gradient-to-br from-yellow-50 to-yellow-100 border-l-4 border-yellow-500">
+        <div className="card bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 border-l-4 border-yellow-500 dark:border-yellow-400 transition-colors duration-200">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm text-yellow-600 font-medium mb-1">Ideas Guardadas</p>
-              <p className="text-3xl font-bold text-yellow-900">5</p>
-              <p className="text-xs text-yellow-600 mt-2">2 nuevas esta semana</p>
+              <p className="text-sm text-yellow-600 dark:text-yellow-400 font-medium mb-1">Ideas Guardadas</p>
+              <p className="text-3xl font-bold text-yellow-900 dark:text-yellow-300">5</p>
+              <p className="text-xs text-yellow-600 dark:text-yellow-400 mt-2">2 nuevas esta semana</p>
             </div>
-            <div className="bg-yellow-500 p-3 rounded-lg">
+            <div className="bg-yellow-500 dark:bg-yellow-600 p-3 rounded-lg transition-colors duration-200">
               <Lightbulb className="text-white" size={24} />
             </div>
           </div>
         </div>
 
         {/* Eventos próximos */}
-        <div className="card bg-gradient-to-br from-green-50 to-green-100 border-l-4 border-green-500">
+        <div className="card bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-l-4 border-green-500 dark:border-green-400 transition-colors duration-200">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm text-green-600 font-medium mb-1">Eventos Próximos</p>
-              <p className="text-3xl font-bold text-green-900">8</p>
-              <p className="text-xs text-green-600 mt-2">Esta semana</p>
+              <p className="text-sm text-green-600 dark:text-green-400 font-medium mb-1">Eventos Próximos</p>
+              <p className="text-3xl font-bold text-green-900 dark:text-green-300">8</p>
+              <p className="text-xs text-green-600 dark:text-green-400 mt-2">Esta semana</p>
             </div>
-            <div className="bg-green-500 p-3 rounded-lg">
+            <div className="bg-green-500 dark:bg-green-600 p-3 rounded-lg transition-colors duration-200">
               <Calendar className="text-white" size={24} />
             </div>
           </div>
         </div>
 
         {/* Proyectos activos */}
-        <div className="card bg-gradient-to-br from-purple-50 to-purple-100 border-l-4 border-purple-500">
+        <div className="card bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border-l-4 border-purple-500 dark:border-purple-400 transition-colors duration-200">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm text-purple-600 font-medium mb-1">Proyectos Activos</p>
-              <p className="text-3xl font-bold text-purple-900">3</p>
-              <p className="text-xs text-purple-600 mt-2">75% completado</p>
+              <p className="text-sm text-purple-600 dark:text-purple-400 font-medium mb-1">Proyectos Activos</p>
+              <p className="text-3xl font-bold text-purple-900 dark:text-purple-300">3</p>
+              <p className="text-xs text-purple-600 dark:text-purple-400 mt-2">75% completado</p>
             </div>
-            <div className="bg-purple-500 p-3 rounded-lg">
+            <div className="bg-purple-500 dark:bg-purple-600 p-3 rounded-lg transition-colors duration-200">
               <TrendingUp className="text-white" size={24} />
             </div>
           </div>
@@ -100,30 +100,30 @@ const HomeView = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Tareas recientes */}
-        <div className="card col-span-2">
-          <h3 className="text-xl font-bold text-neutral-800 mb-4 flex items-center gap-2">
-            <CheckCircle className="text-primary" size={24} />
+        <div className="card col-span-2 dark:bg-darkTheme-card dark:border-darkTheme-border transition-colors duration-200">
+          <h3 className="text-xl font-bold text-neutral-800 dark:text-darkTheme-text mb-4 flex items-center gap-2">
+            <CheckCircle className="text-primary dark:text-primary-light" size={24} />
             Tareas Recientes
           </h3>
           <div className="space-y-3">
             {[1, 2, 3, 4].map((item) => (
               <div
                 key={item}
-                className="flex items-center gap-3 p-3 bg-neutral-50 rounded-lg hover:bg-neutral-100 transition-colors"
+                className="flex items-center gap-3 p-3 bg-neutral-50 dark:bg-darkTheme-bg rounded-lg hover:bg-neutral-100 dark:hover:bg-darkTheme-border transition-colors duration-200"
               >
                 <input
                   type="checkbox"
                   className="w-5 h-5 text-primary rounded focus:ring-primary"
                 />
                 <div className="flex-1">
-                  <p className="font-medium text-neutral-800">
+                  <p className="font-medium text-neutral-800 dark:text-darkTheme-text">
                     Completar diseño del dashboard
                   </p>
-                  <p className="text-xs text-neutral-500">
+                  <p className="text-xs text-neutral-500 dark:text-darkTheme-muted">
                     Proyecto: UP TO DAY • Vence: Hoy
                   </p>
                 </div>
-                <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
+                <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs rounded-full transition-colors duration-200">
                   En progreso
                 </span>
               </div>
@@ -132,45 +132,45 @@ const HomeView = () => {
         </div>
 
         {/* Progreso semanal */}
-        <div className="card">
-          <h3 className="text-xl font-bold text-neutral-800 mb-4 flex items-center gap-2">
-            <TrendingUp className="text-secondary" size={24} />
+        <div className="card dark:bg-darkTheme-card dark:border-darkTheme-border transition-colors duration-200">
+          <h3 className="text-xl font-bold text-neutral-800 dark:text-darkTheme-text mb-4 flex items-center gap-2">
+            <TrendingUp className="text-secondary dark:text-secondary" size={24} />
             Progreso Semanal
           </h3>
           <div className="space-y-4">
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-neutral-600">Tareas Completadas</span>
-                <span className="font-bold text-primary">18/25</span>
+                <span className="text-neutral-600 dark:text-darkTheme-muted">Tareas Completadas</span>
+                <span className="font-bold text-primary dark:text-primary-light">18/25</span>
               </div>
-              <div className="w-full bg-neutral-200 rounded-full h-2">
-                <div className="bg-primary h-2 rounded-full" style={{ width: '72%' }}></div>
-              </div>
-            </div>
-
-            <div>
-              <div className="flex justify-between text-sm mb-2">
-                <span className="text-neutral-600">Ideas Implementadas</span>
-                <span className="font-bold text-secondary">3/5</span>
-              </div>
-              <div className="w-full bg-neutral-200 rounded-full h-2">
-                <div className="bg-secondary h-2 rounded-full" style={{ width: '60%' }}></div>
+              <div className="w-full bg-neutral-200 dark:bg-darkTheme-border rounded-full h-2">
+                <div className="bg-primary dark:bg-primary-light h-2 rounded-full transition-colors duration-200" style={{ width: '72%' }}></div>
               </div>
             </div>
 
             <div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-neutral-600">Eventos Asistidos</span>
-                <span className="font-bold text-green-600">6/8</span>
+                <span className="text-neutral-600 dark:text-darkTheme-muted">Ideas Implementadas</span>
+                <span className="font-bold text-secondary dark:text-secondary">3/5</span>
               </div>
-              <div className="w-full bg-neutral-200 rounded-full h-2">
-                <div className="bg-green-600 h-2 rounded-full" style={{ width: '75%' }}></div>
+              <div className="w-full bg-neutral-200 dark:bg-darkTheme-border rounded-full h-2">
+                <div className="bg-secondary dark:bg-secondary h-2 rounded-full transition-colors duration-200" style={{ width: '60%' }}></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-sm mb-2">
+                <span className="text-neutral-600 dark:text-darkTheme-muted">Eventos Asistidos</span>
+                <span className="font-bold text-green-600 dark:text-green-400">6/8</span>
+              </div>
+              <div className="w-full bg-neutral-200 dark:bg-darkTheme-border rounded-full h-2">
+                <div className="bg-green-600 dark:bg-green-500 h-2 rounded-full transition-colors duration-200" style={{ width: '75%' }}></div>
               </div>
             </div>
           </div>
 
-          <div className="mt-6 p-3 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg">
-            <p className="text-sm font-medium text-center text-primary-dark">
+          <div className="mt-6 p-3 bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 rounded-lg transition-colors duration-200">
+            <p className="text-sm font-medium text-center text-primary-dark dark:text-primary-light">
               ¡Excelente progreso! 🎉
             </p>
           </div>
@@ -178,8 +178,8 @@ const HomeView = () => {
       </div>
 
       {/* Accesos rápidos */}
-      <div className="card">
-        <h3 className="text-xl font-bold text-neutral-800 mb-4">
+      <div className="card dark:bg-darkTheme-card dark:border-darkTheme-border transition-colors duration-200">
+        <h3 className="text-xl font-bold text-neutral-800 dark:text-darkTheme-text mb-4">
           Accesos Rápidos
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

@@ -114,9 +114,9 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-light via-secondary to-primary p-4 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-light via-secondary to-primary dark:from-primary dark:via-secondary dark:to-primary-dark p-4 py-12 transition-colors duration-200">
       {/* Contenedor principal del formulario */}
-      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-8 space-y-6">
+      <div className="w-full max-w-2xl bg-white dark:bg-darkTheme-card rounded-2xl shadow-2xl p-8 space-y-6">
 
         {/* Logo y título */}
         <div className="text-center space-y-4">
@@ -125,18 +125,18 @@ const Register = () => {
             alt="UP TO DAY Logo"
             className="h-20 mx-auto"
           />
-          <h1 className="text-3xl font-bold text-primary-dark">
+          <h1 className="text-3xl font-bold text-primary-dark dark:text-primary-light">
             Crea tu cuenta
           </h1>
-          <p className="text-neutral-500">
+          <p className="text-neutral-500 dark:text-darkTheme-muted">
             Únete a UP TO DAY y organiza tus proyectos de desarrollo
           </p>
         </div>
 
         {/* Mensaje de error */}
         {error && (
-          <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
-            <p className="text-red-700 text-sm">{error}</p>
+          <div className="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 dark:border-red-400 p-4 rounded">
+            <p className="text-red-700 dark:text-red-400 text-sm">{error}</p>
           </div>
         )}
 
@@ -148,7 +148,7 @@ const Register = () => {
             <div>
               <label
                 htmlFor="firstName"
-                className="block text-sm font-medium text-neutral-700 mb-2"
+                className="block text-sm font-medium text-neutral-700 dark:text-darkTheme-text mb-2"
               >
                 Nombre
               </label>
@@ -168,7 +168,7 @@ const Register = () => {
             <div>
               <label
                 htmlFor="lastName"
-                className="block text-sm font-medium text-neutral-700 mb-2"
+                className="block text-sm font-medium text-neutral-700 dark:text-darkTheme-text mb-2"
               >
                 Apellido
               </label>
@@ -231,7 +231,7 @@ const Register = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-neutral-700 mb-2"
+                className="block text-sm font-medium text-neutral-700 dark:text-darkTheme-text mb-2"
               >
                 Contraseña
               </label>
@@ -251,7 +251,7 @@ const Register = () => {
             <div>
               <label
                 htmlFor="confirmPassword"
-                className="block text-sm font-medium text-neutral-700 mb-2"
+                className="block text-sm font-medium text-neutral-700 dark:text-darkTheme-text mb-2"
               >
                 Confirmar Contraseña
               </label>
@@ -269,7 +269,7 @@ const Register = () => {
           </div>
 
           {/* CAPTCHA simulado */}
-          <div className="bg-neutral-100 rounded-lg p-4 flex items-center justify-between">
+          <div className="bg-neutral-100 dark:bg-darkTheme-bg rounded-lg p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <input
                 type="checkbox"
@@ -279,11 +279,11 @@ const Register = () => {
                 className="w-5 h-5 text-primary focus:ring-primary rounded"
                 disabled={loading}
               />
-              <label htmlFor="captcha" className="text-sm text-neutral-700">
+              <label htmlFor="captcha" className="text-sm text-neutral-700 dark:text-darkTheme-text">
                 No soy un robot
               </label>
             </div>
-            <div className="text-xs text-neutral-500">
+            <div className="text-xs text-neutral-500 dark:text-darkTheme-muted">
               reCAPTCHA
             </div>
           </div>
@@ -300,12 +300,12 @@ const Register = () => {
         </form>
 
         {/* Link a login */}
-        <div className="text-center pt-4 border-t border-neutral-200">
-          <p className="text-sm text-neutral-600">
+        <div className="text-center pt-4 border-t border-neutral-200 dark:border-darkTheme-border">
+          <p className="text-sm text-neutral-600 dark:text-darkTheme-muted">
             ¿Ya tienes una cuenta?{' '}
             <Link
               to="/login"
-              className="font-medium text-primary hover:text-primary-dark transition-colors"
+              className="font-medium text-primary dark:text-primary-light hover:text-primary-dark dark:hover:text-primary transition-colors"
             >
               Inicia sesión aquí
             </Link>

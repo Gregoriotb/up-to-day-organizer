@@ -55,18 +55,18 @@ const CalendarView = () => {
   };
 
   return (
-    <div className="h-full flex flex-col bg-gradient-to-br from-green-50 to-emerald-50">
+    <div className="h-full flex flex-col bg-gradient-to-br from-green-50 to-emerald-50 dark:from-darkTheme-bg dark:to-darkTheme-border transition-colors duration-200">
 
       {/* Header */}
-      <div className="bg-white border-b border-neutral-200 px-8 py-6 shadow-sm">
+      <div className="bg-white dark:bg-darkTheme-card border-b border-neutral-200 dark:border-darkTheme-border px-8 py-6 shadow-sm transition-colors duration-200">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <CalendarIcon className="text-green-500" size={32} />
+            <CalendarIcon className="text-green-500 dark:text-green-400" size={32} />
             <div>
-              <h2 className="text-3xl font-bold text-primary-dark">
+              <h2 className="text-3xl font-bold text-primary-dark dark:text-primary-light">
                 Calendario
               </h2>
-              <p className="text-neutral-600">
+              <p className="text-neutral-600 dark:text-darkTheme-muted">
                 Gestiona tus eventos y actividades
               </p>
             </div>
@@ -79,24 +79,24 @@ const CalendarView = () => {
       </div>
 
       {/* Navegación del calendario */}
-      <div className="bg-white border-b border-neutral-200 px-8 py-4">
+      <div className="bg-white dark:bg-darkTheme-card border-b border-neutral-200 dark:border-darkTheme-border px-8 py-4 transition-colors duration-200">
         <div className="flex items-center justify-between">
           <button
             onClick={previousMonth}
-            className="p-2 hover:bg-neutral-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-neutral-100 dark:hover:bg-darkTheme-border rounded-lg transition-colors duration-200"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={24} className="dark:text-darkTheme-text" />
           </button>
 
-          <h3 className="text-2xl font-bold text-primary-dark capitalize">
+          <h3 className="text-2xl font-bold text-primary-dark dark:text-primary-light capitalize">
             {format(currentDate, 'MMMM yyyy', { locale: es })}
           </h3>
 
           <button
             onClick={nextMonth}
-            className="p-2 hover:bg-neutral-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-neutral-100 dark:hover:bg-darkTheme-border rounded-lg transition-colors duration-200"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={24} className="dark:text-darkTheme-text" />
           </button>
         </div>
       </div>
@@ -108,7 +108,7 @@ const CalendarView = () => {
           {/* Días de la semana */}
           <div className="grid grid-cols-7 gap-2 mb-2">
             {['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map((day) => (
-              <div key={day} className="text-center font-semibold text-neutral-600 py-2">
+              <div key={day} className="text-center font-semibold text-neutral-600 dark:text-darkTheme-muted py-2">
                 {day}
               </div>
             ))}
@@ -124,20 +124,20 @@ const CalendarView = () => {
                 <div
                   key={day.toString()}
                   onClick={() => setSelectedDate(day)}
-                  className={`min-h-32 p-2 rounded-lg border-2 cursor-pointer transition-all ${
+                  className={`min-h-32 p-2 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
                     isToday(day)
-                      ? 'bg-primary/10 border-primary'
+                      ? 'bg-primary/10 dark:bg-primary/20 border-primary dark:border-primary-light'
                       : isSelected
-                      ? 'bg-secondary/10 border-secondary'
-                      : 'bg-white border-neutral-200 hover:border-primary'
+                      ? 'bg-secondary/10 dark:bg-secondary/20 border-secondary dark:border-secondary'
+                      : 'bg-white dark:bg-darkTheme-card border-neutral-200 dark:border-darkTheme-border hover:border-primary dark:hover:border-primary-light'
                   }`}
                 >
                   <div className={`text-sm font-semibold mb-2 ${
                     isToday(day)
-                      ? 'text-primary'
+                      ? 'text-primary dark:text-primary-light'
                       : isSameMonth(day, currentDate)
-                      ? 'text-neutral-800'
-                      : 'text-neutral-400'
+                      ? 'text-neutral-800 dark:text-darkTheme-text'
+                      : 'text-neutral-400 dark:text-darkTheme-muted'
                   }`}>
                     {format(day, 'd')}
                   </div>
@@ -160,26 +160,26 @@ const CalendarView = () => {
           </div>
 
           {/* Eventos del día seleccionado */}
-          <div className="mt-8 card">
-            <h3 className="text-xl font-bold text-neutral-800 mb-4">
+          <div className="mt-8 card dark:bg-darkTheme-card dark:border-darkTheme-border transition-colors duration-200">
+            <h3 className="text-xl font-bold text-neutral-800 dark:text-darkTheme-text mb-4">
               Eventos del {format(selectedDate, "d 'de' MMMM", { locale: es })}
             </h3>
             <div className="space-y-3">
               {getEventsForDay(selectedDate).length > 0 ? (
                 getEventsForDay(selectedDate).map(event => (
-                  <div key={event.id} className="flex items-center gap-4 p-4 bg-neutral-50 rounded-lg">
+                  <div key={event.id} className="flex items-center gap-4 p-4 bg-neutral-50 dark:bg-darkTheme-bg rounded-lg transition-colors duration-200">
                     <div className={`w-3 h-3 rounded-full ${event.color}`}></div>
                     <div className="flex-1">
-                      <p className="font-semibold text-neutral-800">{event.title}</p>
-                      <p className="text-sm text-neutral-600">{event.time}</p>
+                      <p className="font-semibold text-neutral-800 dark:text-darkTheme-text">{event.title}</p>
+                      <p className="text-sm text-neutral-600 dark:text-darkTheme-muted">{event.time}</p>
                     </div>
-                    <span className="px-3 py-1 bg-white text-neutral-700 text-xs rounded-full border">
+                    <span className="px-3 py-1 bg-white dark:bg-darkTheme-card text-neutral-700 dark:text-darkTheme-text text-xs rounded-full border border-neutral-200 dark:border-darkTheme-border transition-colors duration-200">
                       {event.type}
                     </span>
                   </div>
                 ))
               ) : (
-                <p className="text-neutral-500 text-center py-8">
+                <p className="text-neutral-500 dark:text-darkTheme-muted text-center py-8">
                   No hay eventos para este día
                 </p>
               )}

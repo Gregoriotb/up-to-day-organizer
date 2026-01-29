@@ -52,12 +52,16 @@ Conecta tus herramientas favoritas:
 - Gestión de equipo
 
 ### 🌙 Tema Oscuro/Claro
-- Switch animado en panel de perfil
-- Transiciones suaves entre temas
+- Toggle switch minimalista en panel de perfil (parte inferior)
+- Transiciones suaves entre temas (200-300ms)
 - Paleta oscura personalizada con tintes lavanda/rosa
 - Preferencia guardada en localStorage
 - Iconos Sol/Luna para indicar tema actual
-- Soporte completo en todos los componentes
+- **Soporte completo en TODA la aplicación**:
+  - Autenticación (Login/Register)
+  - Dashboard y paneles (Left/Right)
+  - Sistema de pestañas
+  - Todas las vistas de features (Home, Tareas, Ideas, Calendario, Archivos, Proyectos, Integraciones)
 
 ## 🛠️ Stack Tecnológico
 

@@ -179,28 +179,17 @@ const LeftPanel = ({ onOpenTab }) => {
       {/* Switch de tema y logout */}
       <div className="p-4 border-t border-neutral-200 dark:border-darkTheme-border space-y-3">
 
-        {/* Switch de Tema */}
-        <div className="flex items-center justify-between p-3 bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/5 dark:to-secondary/5 rounded-lg border border-primary/20 dark:border-primary/30">
-          <div className="flex items-center gap-2">
-            {isDark ? (
-              <Moon size={18} className="text-primary dark:text-primary-light" />
-            ) : (
-              <Sun size={18} className="text-primary" />
-            )}
-            <span className="text-sm font-medium text-neutral-700 dark:text-darkTheme-text">
-              {isDark ? 'Modo Oscuro' : 'Modo Claro'}
-            </span>
-          </div>
-
-          {/* Toggle Switch */}
+        {/* Switch de Tema - Solo el toggle */}
+        <div className="flex items-center justify-center">
           <button
             onClick={toggleTheme}
-            className={`relative w-14 h-7 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+            className={`relative w-14 h-7 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-darkTheme-bg ${
               isDark
                 ? 'bg-gradient-to-r from-primary to-secondary'
                 : 'bg-neutral-300'
             }`}
             aria-label="Toggle theme"
+            title={isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
           >
             <span
               className={`absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 flex items-center justify-center ${

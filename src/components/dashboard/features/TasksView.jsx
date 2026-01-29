@@ -92,16 +92,16 @@ const TasksView = () => {
   };
 
   return (
-    <div className="h-full flex flex-col bg-gradient-to-br from-neutral-50 to-neutral-100">
+    <div className="h-full flex flex-col bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-darkTheme-bg dark:to-darkTheme-border transition-colors duration-200">
 
       {/* Header */}
-      <div className="bg-white border-b border-neutral-200 px-8 py-6 shadow-sm">
+      <div className="bg-white dark:bg-darkTheme-card border-b border-neutral-200 dark:border-darkTheme-border px-8 py-6 shadow-sm transition-colors duration-200">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-3xl font-bold text-primary-dark">
+            <h2 className="text-3xl font-bold text-primary-dark dark:text-primary-light">
               Mis Tareas
             </h2>
-            <p className="text-neutral-600 mt-1">
+            <p className="text-neutral-600 dark:text-darkTheme-muted mt-1">
               Organiza y gestiona tus tareas como un profesional
             </p>
           </div>
@@ -136,17 +136,17 @@ const TasksView = () => {
           {columns.map((column) => (
             <div
               key={column.id}
-              className="w-80 flex flex-col bg-white rounded-xl shadow-md border border-neutral-200"
+              className="w-80 flex flex-col bg-white dark:bg-darkTheme-card rounded-xl shadow-md border border-neutral-200 dark:border-darkTheme-border transition-colors duration-200"
             >
               {/* Header de la columna */}
-              <div className={`${column.color} text-white px-4 py-3 rounded-t-xl flex items-center justify-between`}>
+              <div className={`${column.color} text-white px-4 py-3 rounded-t-xl flex items-center justify-between transition-colors duration-200`}>
                 <div className="flex items-center gap-2">
                   <h3 className="font-bold text-lg">{column.title}</h3>
-                  <span className="bg-white/30 px-2 py-0.5 rounded-full text-sm">
+                  <span className="bg-white/30 dark:bg-white/20 px-2 py-0.5 rounded-full text-sm">
                     {column.tasks.length}
                   </span>
                 </div>
-                <button className="hover:bg-white/20 p-1 rounded">
+                <button className="hover:bg-white/20 p-1 rounded transition-colors duration-200">
                   <MoreVertical size={18} />
                 </button>
               </div>
@@ -156,16 +156,16 @@ const TasksView = () => {
                 {column.tasks.map((task) => (
                   <div
                     key={task.id}
-                    className="card p-4 hover:shadow-lg cursor-pointer transition-all duration-200 border border-neutral-100 hover:border-primary"
+                    className="card p-4 hover:shadow-lg cursor-pointer transition-all duration-200 border border-neutral-100 dark:border-darkTheme-border hover:border-primary dark:hover:border-primary-light dark:bg-darkTheme-bg"
                   >
                     {/* Título de la tarea */}
-                    <h4 className="font-semibold text-neutral-800 mb-2">
+                    <h4 className="font-semibold text-neutral-800 dark:text-darkTheme-text mb-2">
                       {task.title}
                     </h4>
 
                     {/* Descripción */}
                     {task.description && (
-                      <p className="text-sm text-neutral-600 mb-3">
+                      <p className="text-sm text-neutral-600 dark:text-darkTheme-muted mb-3">
                         {task.description}
                       </p>
                     )}
@@ -176,7 +176,7 @@ const TasksView = () => {
                         {task.tags.map((tag, index) => (
                           <span
                             key={index}
-                            className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full flex items-center gap-1"
+                            className="px-2 py-1 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light text-xs rounded-full flex items-center gap-1 transition-colors duration-200"
                           >
                             <Tag size={12} />
                             {tag}
@@ -186,7 +186,7 @@ const TasksView = () => {
                     )}
 
                     {/* Footer de la tarjeta */}
-                    <div className="flex items-center justify-between pt-3 border-t border-neutral-100">
+                    <div className="flex items-center justify-between pt-3 border-t border-neutral-100 dark:border-darkTheme-border">
                       {/* Prioridad */}
                       <span className={`px-2 py-1 text-xs rounded-full border ${getPriorityColor(task.priority)}`}>
                         {getPriorityText(task.priority)}
@@ -195,13 +195,13 @@ const TasksView = () => {
                       {/* Fecha y asignado */}
                       <div className="flex items-center gap-2">
                         {task.dueDate && (
-                          <div className="flex items-center gap-1 text-xs text-neutral-500">
+                          <div className="flex items-center gap-1 text-xs text-neutral-500 dark:text-darkTheme-muted">
                             <Calendar size={14} />
                             <span>{new Date(task.dueDate).toLocaleDateString('es-ES', { month: 'short', day: 'numeric' })}</span>
                           </div>
                         )}
                         {task.assignee && (
-                          <div className="flex items-center gap-1 text-xs text-neutral-500">
+                          <div className="flex items-center gap-1 text-xs text-neutral-500 dark:text-darkTheme-muted">
                             <User size={14} />
                           </div>
                         )}
@@ -212,8 +212,8 @@ const TasksView = () => {
               </div>
 
               {/* Botón para agregar tarea en la columna */}
-              <div className="p-3 border-t border-neutral-200">
-                <button className="w-full flex items-center justify-center gap-2 p-2 text-neutral-600 hover:bg-neutral-100 rounded-lg transition-colors">
+              <div className="p-3 border-t border-neutral-200 dark:border-darkTheme-border transition-colors duration-200">
+                <button className="w-full flex items-center justify-center gap-2 p-2 text-neutral-600 dark:text-darkTheme-muted hover:bg-neutral-100 dark:hover:bg-darkTheme-border rounded-lg transition-colors duration-200">
                   <Plus size={18} />
                   <span className="text-sm font-medium">Agregar tarea</span>
                 </button>

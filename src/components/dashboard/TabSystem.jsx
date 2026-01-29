@@ -39,14 +39,14 @@ const TabSystem = ({ tabs, activeTab, onTabChange, onTabClose }) => {
     <div className="flex flex-col h-full">
       {/* Barra de pestañas */}
       {tabs.length > 0 && (
-        <div className="bg-white border-b border-neutral-200 px-2 py-1 flex items-center gap-1 overflow-x-auto scrollbar-thin">
+        <div className="bg-white dark:bg-darkTheme-card border-b border-neutral-200 dark:border-darkTheme-border px-2 py-1 flex items-center gap-1 overflow-x-auto scrollbar-thin transition-colors duration-200">
           {tabs.map(tab => (
             <div
               key={tab.id}
               className={`flex items-center gap-2 px-4 py-2 rounded-t-lg transition-all duration-200 cursor-pointer group ${
                 activeTab === tab.id
-                  ? 'bg-primary text-white'
-                  : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                  ? 'bg-primary dark:bg-primary-light text-white'
+                  : 'bg-neutral-100 dark:bg-darkTheme-bg text-neutral-700 dark:text-darkTheme-text hover:bg-neutral-200 dark:hover:bg-darkTheme-border'
               }`}
               onClick={() => onTabChange(tab.id)}
             >
@@ -77,7 +77,7 @@ const TabSystem = ({ tabs, activeTab, onTabChange, onTabClose }) => {
       )}
 
       {/* Contenido de la pestaña activa */}
-      <div className="flex-1 overflow-auto bg-neutral-50">
+      <div className="flex-1 overflow-auto bg-neutral-50 dark:bg-darkTheme-bg transition-colors duration-200">
         <div className="animate-fade-in">
           {renderTabContent()}
         </div>

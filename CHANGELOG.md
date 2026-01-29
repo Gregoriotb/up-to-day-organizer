@@ -5,6 +5,43 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.2.0] - 2026-01-29
+
+### ✅ Agregado
+
+#### Tema Oscuro Completo en Toda la Aplicación
+- **Todos los componentes actualizados con tema oscuro**:
+  - Login y Register: Fondos, textos, bordes y botones adaptados
+  - RightPanel: Herramientas, estadísticas y tips con tema oscuro
+  - TabSystem: Pestañas y contenido con soporte dark
+  - HomeView: Cards de resumen, actividad reciente y progreso
+  - TasksView: Tablero Kanban con columnas y tarjetas en dark mode
+  - IdeasView: Formulario, filtros y lista de ideas adaptados
+  - CalendarView: Grid de calendario y eventos con tema oscuro
+  - FilesView: Sidebar de proyectos y grid de archivos
+  - ProjectsView: Estadísticas y cards de proyectos
+  - IntegrationsView: Filtros y cards de integraciones
+
+### 🎨 Mejorado
+
+#### Switch de Tema
+- Simplificado a solo el toggle switch (sin contenedor con texto)
+- Centrado en la sección inferior del LeftPanel
+- Tooltips descriptivos al hacer hover
+- Focus ring mejorado para accesibilidad
+
+#### Consistencia Visual
+- Paleta `darkTheme` aplicada consistentemente en todos los componentes
+- Transiciones suaves de 200ms en todos los cambios de color
+- Contraste optimizado para legibilidad en modo oscuro
+- Gradientes adaptados preservando la identidad visual
+
+### 🐛 Corregido
+- Error de conflicto de nombres de clases (dark → darkTheme)
+- Caché de Vite limpiado para reflejar cambios de configuración
+
+---
+
 ## [1.1.0] - 2026-01-29
 
 ### ✅ Agregado

@@ -67,18 +67,18 @@ const ProjectsView = () => {
   };
 
   return (
-    <div className="h-full flex flex-col bg-gradient-to-br from-neutral-50 to-neutral-100">
+    <div className="h-full flex flex-col bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-darkTheme-bg dark:to-darkTheme-border transition-colors duration-200">
 
       {/* Header */}
-      <div className="bg-white border-b border-neutral-200 px-8 py-6 shadow-sm">
+      <div className="bg-white dark:bg-darkTheme-card border-b border-neutral-200 dark:border-darkTheme-border px-8 py-6 shadow-sm transition-colors duration-200">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Folder className="text-primary" size={32} />
+            <Folder className="text-primary dark:text-primary-light" size={32} />
             <div>
-              <h2 className="text-3xl font-bold text-primary-dark">
+              <h2 className="text-3xl font-bold text-primary-dark dark:text-primary-light">
                 Mis Proyectos
               </h2>
-              <p className="text-neutral-600">
+              <p className="text-neutral-600 dark:text-darkTheme-muted">
                 Gestiona todos tus proyectos de desarrollo
               </p>
             </div>
@@ -91,29 +91,29 @@ const ProjectsView = () => {
       </div>
 
       {/* Estadísticas generales */}
-      <div className="bg-white border-b border-neutral-200 px-8 py-4">
+      <div className="bg-white dark:bg-darkTheme-card border-b border-neutral-200 dark:border-darkTheme-border px-8 py-4 transition-colors duration-200">
         <div className="grid grid-cols-4 gap-4">
           <div className="text-center">
-            <p className="text-3xl font-bold text-primary">{projects.length}</p>
-            <p className="text-sm text-neutral-600">Proyectos Totales</p>
+            <p className="text-3xl font-bold text-primary dark:text-primary-light">{projects.length}</p>
+            <p className="text-sm text-neutral-600 dark:text-darkTheme-muted">Proyectos Totales</p>
           </div>
           <div className="text-center">
-            <p className="text-3xl font-bold text-green-600">
+            <p className="text-3xl font-bold text-green-600 dark:text-green-400">
               {projects.filter(p => p.status === 'active').length}
             </p>
-            <p className="text-sm text-neutral-600">Activos</p>
+            <p className="text-sm text-neutral-600 dark:text-darkTheme-muted">Activos</p>
           </div>
           <div className="text-center">
-            <p className="text-3xl font-bold text-secondary">
+            <p className="text-3xl font-bold text-secondary dark:text-secondary">
               {projects.reduce((sum, p) => sum + p.tasks.total, 0)}
             </p>
-            <p className="text-sm text-neutral-600">Tareas Totales</p>
+            <p className="text-sm text-neutral-600 dark:text-darkTheme-muted">Tareas Totales</p>
           </div>
           <div className="text-center">
-            <p className="text-3xl font-bold text-purple-600">
+            <p className="text-3xl font-bold text-purple-600 dark:text-purple-400">
               {Math.round(projects.reduce((sum, p) => sum + p.progress, 0) / projects.length)}%
             </p>
-            <p className="text-sm text-neutral-600">Progreso Promedio</p>
+            <p className="text-sm text-neutral-600 dark:text-darkTheme-muted">Progreso Promedio</p>
           </div>
         </div>
       </div>
@@ -124,16 +124,16 @@ const ProjectsView = () => {
           {projects.map(project => (
             <div
               key={project.id}
-              className="card hover:shadow-xl transition-all cursor-pointer group"
+              className="card hover:shadow-xl transition-all duration-200 cursor-pointer group dark:bg-darkTheme-card dark:border-darkTheme-border"
             >
               {/* Header del proyecto con gradiente */}
-              <div className={`bg-gradient-to-r ${project.color} rounded-lg p-4 mb-4 text-white`}>
+              <div className={`bg-gradient-to-r ${project.color} rounded-lg p-4 mb-4 text-white transition-colors duration-200`}>
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <h3 className="text-xl font-bold mb-1">{project.name}</h3>
                     <p className="text-sm opacity-90">{project.description}</p>
                   </div>
-                  <button className="p-2 hover:bg-white/20 rounded-lg transition-colors">
+                  <button className="p-2 hover:bg-white/20 rounded-lg transition-colors duration-200">
                     <ExternalLink size={20} />
                   </button>
                 </div>
@@ -144,7 +144,7 @@ const ProjectsView = () => {
                 <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
                   {getStatusText(project.status)}
                 </span>
-                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
+                <span className="px-3 py-1 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light rounded-full text-xs font-medium transition-colors duration-200">
                   {project.category}
                 </span>
               </div>
@@ -152,54 +152,54 @@ const ProjectsView = () => {
               {/* Progreso */}
               <div className="mb-4">
                 <div className="flex justify-between text-sm mb-2">
-                  <span className="text-neutral-600">Progreso del proyecto</span>
-                  <span className="font-bold text-primary">{project.progress}%</span>
+                  <span className="text-neutral-600 dark:text-darkTheme-muted">Progreso del proyecto</span>
+                  <span className="font-bold text-primary dark:text-primary-light">{project.progress}%</span>
                 </div>
-                <div className="w-full bg-neutral-200 rounded-full h-2">
+                <div className="w-full bg-neutral-200 dark:bg-darkTheme-border rounded-full h-2">
                   <div
-                    className="bg-primary h-2 rounded-full transition-all"
+                    className="bg-primary dark:bg-primary-light h-2 rounded-full transition-all duration-200"
                     style={{ width: `${project.progress}%` }}
                   ></div>
                 </div>
               </div>
 
               {/* Estadísticas */}
-              <div className="grid grid-cols-3 gap-4 mb-4 pb-4 border-b border-neutral-200">
+              <div className="grid grid-cols-3 gap-4 mb-4 pb-4 border-b border-neutral-200 dark:border-darkTheme-border">
                 <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 text-neutral-600 mb-1">
+                  <div className="flex items-center justify-center gap-1 text-neutral-600 dark:text-darkTheme-muted mb-1">
                     <Users size={16} />
                   </div>
-                  <p className="text-lg font-bold text-neutral-800">{project.team}</p>
-                  <p className="text-xs text-neutral-500">Miembros</p>
+                  <p className="text-lg font-bold text-neutral-800 dark:text-darkTheme-text">{project.team}</p>
+                  <p className="text-xs text-neutral-500 dark:text-darkTheme-muted">Miembros</p>
                 </div>
                 <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 text-neutral-600 mb-1">
+                  <div className="flex items-center justify-center gap-1 text-neutral-600 dark:text-darkTheme-muted mb-1">
                     <GitBranch size={16} />
                   </div>
-                  <p className="text-lg font-bold text-neutral-800">
+                  <p className="text-lg font-bold text-neutral-800 dark:text-darkTheme-text">
                     {project.tasks.completed}/{project.tasks.total}
                   </p>
-                  <p className="text-xs text-neutral-500">Tareas</p>
+                  <p className="text-xs text-neutral-500 dark:text-darkTheme-muted">Tareas</p>
                 </div>
                 <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 text-neutral-600 mb-1">
+                  <div className="flex items-center justify-center gap-1 text-neutral-600 dark:text-darkTheme-muted mb-1">
                     <Clock size={16} />
                   </div>
-                  <p className="text-xs font-medium text-neutral-800">
+                  <p className="text-xs font-medium text-neutral-800 dark:text-darkTheme-text">
                     {new Date(project.lastUpdate).toLocaleDateString('es-ES', { month: 'short', day: 'numeric' })}
                   </p>
-                  <p className="text-xs text-neutral-500">Actualización</p>
+                  <p className="text-xs text-neutral-500 dark:text-darkTheme-muted">Actualización</p>
                 </div>
               </div>
 
               {/* Tecnologías */}
               <div>
-                <p className="text-xs text-neutral-600 mb-2">Tecnologías:</p>
+                <p className="text-xs text-neutral-600 dark:text-darkTheme-muted mb-2">Tecnologías:</p>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, index) => (
                     <span
                       key={index}
-                      className="px-2 py-1 bg-neutral-100 text-neutral-700 text-xs rounded"
+                      className="px-2 py-1 bg-neutral-100 dark:bg-darkTheme-bg text-neutral-700 dark:text-darkTheme-text text-xs rounded transition-colors duration-200"
                     >
                       {tech}
                     </span>

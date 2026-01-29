@@ -87,9 +87,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-light via-secondary to-primary p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-light via-secondary to-primary dark:from-primary dark:via-secondary dark:to-primary-dark p-4 transition-colors duration-200">
       {/* Contenedor principal del formulario */}
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 space-y-6">
+      <div className="w-full max-w-md bg-white dark:bg-darkTheme-card rounded-2xl shadow-2xl p-8 space-y-6">
 
         {/* Logo y título */}
         <div className="text-center space-y-4">
@@ -98,18 +98,18 @@ const Login = () => {
             alt="UP TO DAY Logo"
             className="h-24 mx-auto"
           />
-          <h1 className="text-3xl font-bold text-primary-dark">
+          <h1 className="text-3xl font-bold text-primary-dark dark:text-primary-light">
             Bienvenido de vuelta
           </h1>
-          <p className="text-neutral-500">
+          <p className="text-neutral-500 dark:text-darkTheme-muted">
             Inicia sesión para continuar organizando tus proyectos
           </p>
         </div>
 
         {/* Mensaje de error */}
         {error && (
-          <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
-            <p className="text-red-700 text-sm">{error}</p>
+          <div className="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 dark:border-red-400 p-4 rounded">
+            <p className="text-red-700 dark:text-red-400 text-sm">{error}</p>
           </div>
         )}
 
@@ -119,7 +119,7 @@ const Login = () => {
           <div>
             <label
               htmlFor="username"
-              className="block text-sm font-medium text-neutral-700 mb-2"
+              className="block text-sm font-medium text-neutral-700 dark:text-darkTheme-text mb-2"
             >
               Usuario
             </label>
@@ -139,7 +139,7 @@ const Login = () => {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-neutral-700 mb-2"
+              className="block text-sm font-medium text-neutral-700 dark:text-darkTheme-text mb-2"
             >
               Contraseña
             </label>
@@ -169,10 +169,10 @@ const Login = () => {
         {/* Separador */}
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-neutral-300"></div>
+            <div className="w-full border-t border-neutral-300 dark:border-darkTheme-border"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white text-neutral-500">O continúa con</span>
+            <span className="px-2 bg-white dark:bg-darkTheme-card text-neutral-500 dark:text-darkTheme-muted">O continúa con</span>
           </div>
         </div>
 
@@ -183,7 +183,7 @@ const Login = () => {
             type="button"
             onClick={handleGoogleLogin}
             disabled={loading}
-            className="flex items-center justify-center gap-2 px-4 py-3 border-2 border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center justify-center gap-2 px-4 py-3 border-2 border-neutral-200 dark:border-darkTheme-border rounded-lg hover:bg-neutral-50 dark:hover:bg-darkTheme-bg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
@@ -203,7 +203,7 @@ const Login = () => {
                 d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
               />
             </svg>
-            <span className="text-sm font-medium text-neutral-700">Google</span>
+            <span className="text-sm font-medium text-neutral-700 dark:text-darkTheme-text">Google</span>
           </button>
 
           {/* GitHub Login */}
@@ -211,20 +211,20 @@ const Login = () => {
             type="button"
             onClick={handleGithubLogin}
             disabled={loading}
-            className="flex items-center justify-center gap-2 px-4 py-3 border-2 border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center justify-center gap-2 px-4 py-3 border-2 border-neutral-200 dark:border-darkTheme-border rounded-lg hover:bg-neutral-50 dark:hover:bg-darkTheme-bg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Github size={20} className="text-neutral-700" />
-            <span className="text-sm font-medium text-neutral-700">GitHub</span>
+            <Github size={20} className="text-neutral-700 dark:text-darkTheme-text" />
+            <span className="text-sm font-medium text-neutral-700 dark:text-darkTheme-text">GitHub</span>
           </button>
         </div>
 
         {/* Link a registro */}
-        <div className="text-center pt-4 border-t border-neutral-200">
-          <p className="text-sm text-neutral-600">
+        <div className="text-center pt-4 border-t border-neutral-200 dark:border-darkTheme-border">
+          <p className="text-sm text-neutral-600 dark:text-darkTheme-muted">
             ¿No tienes una cuenta?{' '}
             <Link
               to="/register"
-              className="font-medium text-primary hover:text-primary-dark transition-colors"
+              className="font-medium text-primary dark:text-primary-light hover:text-primary-dark dark:hover:text-primary transition-colors"
             >
               Regístrate aquí
             </Link>
