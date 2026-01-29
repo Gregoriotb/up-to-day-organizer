@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { User, Folder, Plug, LogOut, Camera } from 'lucide-react';
+import { User, Folder, Plug, LogOut, Camera, Sun, Moon } from 'lucide-react';
 import { useAuth } from '../../../contexts/AuthContext';
+import { useTheme } from '../../../contexts/ThemeContext';
 import { useNavigate } from 'react-router-dom';
 
 /**
@@ -9,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
  */
 const LeftPanel = ({ onOpenTab }) => {
   const { user, logout } = useAuth();
+  const { theme, toggleTheme, isDark } = useTheme();
   const navigate = useNavigate();
   const [hoveredSection, setHoveredSection] = useState(null);
 
@@ -45,10 +47,10 @@ const LeftPanel = ({ onOpenTab }) => {
   };
 
   return (
-    <aside className="h-full bg-white border-r border-neutral-200 flex flex-col shadow-lg">
+    <aside className="h-full bg-white dark:bg-dark-bg border-r border-neutral-200 dark:border-dark-border flex flex-col shadow-lg transition-colors duration-200">
 
       {/* Sección de perfil */}
-      <div className="p-6 border-b border-neutral-200 bg-gradient-to-br from-primary-light/10 to-secondary/10">
+      <div className="p-6 border-b border-neutral-200 dark:border-dark-border bg-gradient-to-br from-primary-light/10 to-secondary/10 dark:from-primary/10 dark:to-secondary/10">
         <div className="flex flex-col items-center space-y-4">
           {/* Imagen de perfil */}
           <div className="relative group">
@@ -75,11 +77,11 @@ const LeftPanel = ({ onOpenTab }) => {
 
           {/* Información del usuario */}
           <div className="text-center">
-            <h3 className="font-semibold text-lg text-primary-dark">
+            <h3 className="font-semibold text-lg text-primary-dark dark:text-primary-light">
               {user?.firstName} {user?.lastName}
             </h3>
-            <p className="text-sm text-neutral-600">@{user?.username}</p>
-            <p className="text-xs text-neutral-500 mt-1">{user?.email}</p>
+            <p className="text-sm text-neutral-600 dark:text-dark-text">@{user?.username}</p>
+            <p className="text-xs text-neutral-500 dark:text-dark-muted mt-1">{user?.email}</p>
           </div>
 
           {/* Botón ver perfil completo */}
@@ -101,20 +103,20 @@ const LeftPanel = ({ onOpenTab }) => {
           className={`w-full flex items-center gap-3 p-4 rounded-lg transition-all duration-200 ${
             hoveredSection === 'projects'
               ? 'bg-primary text-white shadow-md transform scale-105'
-              : 'bg-neutral-50 text-neutral-700 hover:bg-neutral-100'
+              : 'bg-neutral-50 dark:bg-dark-card text-neutral-700 dark:text-dark-text hover:bg-neutral-100 dark:hover:bg-dark-card/80'
           }`}
         >
           <div className={`p-2 rounded-lg ${
             hoveredSection === 'projects'
               ? 'bg-white/20'
-              : 'bg-primary/10'
+              : 'bg-primary/10 dark:bg-primary/20'
           }`}>
-            <Folder size={20} className={hoveredSection === 'projects' ? 'text-white' : 'text-primary'} />
+            <Folder size={20} className={hoveredSection === 'projects' ? 'text-white' : 'text-primary dark:text-primary-light'} />
           </div>
           <div className="flex-1 text-left">
             <p className="font-medium">Mis Proyectos</p>
             <p className={`text-xs ${
-              hoveredSection === 'projects' ? 'text-white/80' : 'text-neutral-500'
+              hoveredSection === 'projects' ? 'text-white/80' : 'text-neutral-500 dark:text-dark-muted'
             }`}>
               Gestiona tus proyectos de desarrollo
             </p>
@@ -129,20 +131,20 @@ const LeftPanel = ({ onOpenTab }) => {
           className={`w-full flex items-center gap-3 p-4 rounded-lg transition-all duration-200 ${
             hoveredSection === 'integrations'
               ? 'bg-secondary text-white shadow-md transform scale-105'
-              : 'bg-neutral-50 text-neutral-700 hover:bg-neutral-100'
+              : 'bg-neutral-50 dark:bg-dark-card text-neutral-700 dark:text-dark-text hover:bg-neutral-100 dark:hover:bg-dark-card/80'
           }`}
         >
           <div className={`p-2 rounded-lg ${
             hoveredSection === 'integrations'
               ? 'bg-white/20'
-              : 'bg-secondary/10'
+              : 'bg-secondary/10 dark:bg-secondary/20'
           }`}>
-            <Plug size={20} className={hoveredSection === 'integrations' ? 'text-white' : 'text-secondary'} />
+            <Plug size={20} className={hoveredSection === 'integrations' ? 'text-white' : 'text-secondary dark:text-secondary-light'} />
           </div>
           <div className="flex-1 text-left">
             <p className="font-medium">Integraciones</p>
             <p className={`text-xs ${
-              hoveredSection === 'integrations' ? 'text-white/80' : 'text-neutral-500'
+              hoveredSection === 'integrations' ? 'text-white/80' : 'text-neutral-500 dark:text-dark-muted'
             }`}>
               Conecta tus herramientas favoritas
             </p>
@@ -150,8 +152,8 @@ const LeftPanel = ({ onOpenTab }) => {
         </button>
 
         {/* Información de integraciones activas */}
-        <div className="mt-6 p-4 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-lg border border-primary/20">
-          <h4 className="text-sm font-semibold text-neutral-700 mb-2">
+        <div className="mt-6 p-4 bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10 rounded-lg border border-primary/20 dark:border-primary/30">
+          <h4 className="text-sm font-semibold text-neutral-700 dark:text-dark-text mb-2">
             Integraciones Activas
           </h4>
           <div className="space-y-2">
@@ -159,14 +161,14 @@ const LeftPanel = ({ onOpenTab }) => {
               user.integrations.map((integration, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-2 text-xs text-neutral-600"
+                  className="flex items-center gap-2 text-xs text-neutral-600 dark:text-dark-muted"
                 >
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                   <span>{integration.name}</span>
                 </div>
               ))
             ) : (
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-neutral-500 dark:text-dark-muted">
                 No hay integraciones configuradas
               </p>
             )}
@@ -174,11 +176,50 @@ const LeftPanel = ({ onOpenTab }) => {
         </div>
       </nav>
 
-      {/* Botón de logout */}
-      <div className="p-4 border-t border-neutral-200">
+      {/* Switch de tema y logout */}
+      <div className="p-4 border-t border-neutral-200 dark:border-dark-border space-y-3">
+
+        {/* Switch de Tema */}
+        <div className="flex items-center justify-between p-3 bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/5 dark:to-secondary/5 rounded-lg border border-primary/20 dark:border-primary/30">
+          <div className="flex items-center gap-2">
+            {isDark ? (
+              <Moon size={18} className="text-primary dark:text-primary-light" />
+            ) : (
+              <Sun size={18} className="text-primary" />
+            )}
+            <span className="text-sm font-medium text-neutral-700 dark:text-dark-text">
+              {isDark ? 'Modo Oscuro' : 'Modo Claro'}
+            </span>
+          </div>
+
+          {/* Toggle Switch */}
+          <button
+            onClick={toggleTheme}
+            className={`relative w-14 h-7 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+              isDark
+                ? 'bg-gradient-to-r from-primary to-secondary'
+                : 'bg-neutral-300'
+            }`}
+            aria-label="Toggle theme"
+          >
+            <span
+              className={`absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 flex items-center justify-center ${
+                isDark ? 'translate-x-7' : 'translate-x-0'
+              }`}
+            >
+              {isDark ? (
+                <Moon size={14} className="text-primary" />
+              ) : (
+                <Sun size={14} className="text-yellow-500" />
+              )}
+            </span>
+          </button>
+        </div>
+
+        {/* Botón de logout */}
         <button
           onClick={handleLogout}
-          className="w-full flex items-center justify-center gap-2 p-3 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors duration-200 font-medium"
+          className="w-full flex items-center justify-center gap-2 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors duration-200 font-medium"
         >
           <LogOut size={18} />
           Cerrar Sesión

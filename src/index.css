@@ -13,10 +13,11 @@
   }
 
   body {
-    @apply bg-neutral-50 text-neutral-900 font-sans;
+    @apply bg-neutral-50 dark:bg-dark-bg text-neutral-900 dark:text-dark-text font-sans;
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
@@ -24,29 +25,29 @@
 @layer components {
   /* Button variants */
   .btn-primary {
-    @apply bg-primary hover:bg-primary/90 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-200;
+    @apply bg-primary hover:bg-primary/90 dark:bg-primary-light dark:hover:bg-primary text-white font-medium px-4 py-2 rounded-lg transition-colors duration-200;
   }
 
   .btn-secondary {
-    @apply bg-secondary hover:bg-secondary/90 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-200;
+    @apply bg-secondary hover:bg-secondary/90 dark:bg-secondary-light dark:hover:bg-secondary text-white font-medium px-4 py-2 rounded-lg transition-colors duration-200;
   }
 
   .btn-outline {
-    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium px-4 py-2 rounded-lg transition-all duration-200;
+    @apply border-2 border-primary dark:border-primary-light text-primary dark:text-primary-light hover:bg-primary hover:text-white dark:hover:bg-primary-light dark:hover:text-white font-medium px-4 py-2 rounded-lg transition-all duration-200;
   }
 
   /* Input styles */
   .input-field {
-    @apply w-full px-4 py-2 border-2 border-neutral-200 rounded-lg focus:border-primary focus:outline-none transition-colors duration-200;
+    @apply w-full px-4 py-2 border-2 border-neutral-200 dark:border-dark-border dark:bg-dark-card dark:text-dark-text rounded-lg focus:border-primary dark:focus:border-primary-light focus:outline-none transition-colors duration-200;
   }
 
   /* Card styles */
   .card {
-    @apply bg-white rounded-xl shadow-sm p-6 transition-shadow duration-200 hover:shadow-md;
+    @apply bg-white dark:bg-dark-card rounded-xl shadow-sm p-6 transition-shadow duration-200 hover:shadow-md dark:border dark:border-dark-border;
   }
 
   /* Panel styles */
   .panel {
-    @apply bg-white/95 backdrop-blur-sm shadow-xl transition-all duration-300;
+    @apply bg-white/95 dark:bg-dark-card/95 backdrop-blur-sm shadow-xl transition-all duration-300;
   }
 }

@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class', // Habilitar modo oscuro con clase
   theme: {
     extend: {
       colors: {
@@ -34,6 +35,15 @@ export default {
           700: '#404040',
           800: '#262626',
           900: '#171717',
+          950: '#0A0A0A',    // Extra oscuro para modo dark
+        },
+        // Colores específicos para modo oscuro
+        dark: {
+          bg: '#0F0F1A',       // Fondo principal oscuro con tinte lavanda
+          card: '#1A1A2E',     // Fondo de tarjetas
+          border: '#2B2B40',   // Bordes
+          text: '#E5E5F0',     // Texto principal
+          muted: '#A0A0B8',    // Texto secundario
         },
       },
       fontFamily: {
