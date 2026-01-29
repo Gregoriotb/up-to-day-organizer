@@ -5,6 +5,63 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.1.0] - 2026-01-29
+
+### ✅ Agregado
+
+#### Sistema de Tema Oscuro/Claro
+- **ThemeContext**: Nuevo contexto para gestión global del tema
+  - Hook `useTheme()` para acceder al tema en cualquier componente
+  - Funciones: `toggleTheme()`, `setTheme()`, `isDark`
+  - Persistencia en localStorage
+
+- **Switch de Tema en LeftPanel**:
+  - Ubicado en la parte inferior del panel de perfil
+  - Toggle animado con transición suave de 300ms
+  - Iconos Sol/Luna que indican el tema actual
+  - Gradiente lavanda/rosa cuando está activado (modo oscuro)
+  - Focus ring para accesibilidad
+
+- **Paleta de Colores para Modo Oscuro**:
+  - `dark-bg`: #0F0F1A (Fondo principal con tinte lavanda)
+  - `dark-card`: #1A1A2E (Tarjetas)
+  - `dark-border`: #2B2B40 (Bordes)
+  - `dark-text`: #E5E5F0 (Texto principal)
+  - `dark-muted`: #A0A0B8 (Texto secundario)
+
+- **Componentes Actualizados con Soporte Dark**:
+  - LeftPanel: Perfil, botones, integraciones
+  - Dashboard: Navbar, fondo principal
+  - Estilos globales: body, btn-*, input-field, card, panel
+  - Transiciones suaves en todos los cambios de color
+
+#### Configuración
+- Tailwind CSS: `darkMode: 'class'` habilitado en config
+- Clase `dark` aplicada dinámicamente al elemento `<html>`
+- Transiciones CSS de 200-300ms para cambios suaves
+
+### 🎨 Mejorado
+
+#### Experiencia de Usuario
+- Cambio de tema instantáneo sin parpadeo
+- Preferencia del usuario persistente entre sesiones
+- Indicadores visuales claros del tema activo
+- Animaciones fluidas en el toggle switch
+
+#### Accesibilidad
+- `aria-label` en botón de toggle
+- Focus ring visible en el switch
+- Contraste adecuado en ambos temas
+- Iconos descriptivos (Sol/Luna)
+
+### 📝 Documentado
+- README.md actualizado con sección de tema oscuro
+- CHANGELOG.md con detalles de implementación
+- Código comentado con JSDoc
+- Guía de uso del sistema de temas
+
+---
+
 ## [1.0.0] - 2026-01-29
 
 ### ✅ Agregado

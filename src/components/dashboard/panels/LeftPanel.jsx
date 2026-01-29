@@ -47,10 +47,10 @@ const LeftPanel = ({ onOpenTab }) => {
   };
 
   return (
-    <aside className="h-full bg-white dark:bg-dark-bg border-r border-neutral-200 dark:border-dark-border flex flex-col shadow-lg transition-colors duration-200">
+    <aside className="h-full bg-white dark:bg-darkTheme-bg border-r border-neutral-200 dark:border-darkTheme-border flex flex-col shadow-lg transition-colors duration-200">
 
       {/* Sección de perfil */}
-      <div className="p-6 border-b border-neutral-200 dark:border-dark-border bg-gradient-to-br from-primary-light/10 to-secondary/10 dark:from-primary/10 dark:to-secondary/10">
+      <div className="p-6 border-b border-neutral-200 dark:border-darkTheme-border bg-gradient-to-br from-primary-light/10 to-secondary/10 dark:from-primary/10 dark:to-secondary/10">
         <div className="flex flex-col items-center space-y-4">
           {/* Imagen de perfil */}
           <div className="relative group">
@@ -80,8 +80,8 @@ const LeftPanel = ({ onOpenTab }) => {
             <h3 className="font-semibold text-lg text-primary-dark dark:text-primary-light">
               {user?.firstName} {user?.lastName}
             </h3>
-            <p className="text-sm text-neutral-600 dark:text-dark-text">@{user?.username}</p>
-            <p className="text-xs text-neutral-500 dark:text-dark-muted mt-1">{user?.email}</p>
+            <p className="text-sm text-neutral-600 dark:text-darkTheme-text">@{user?.username}</p>
+            <p className="text-xs text-neutral-500 dark:text-darkTheme-muted mt-1">{user?.email}</p>
           </div>
 
           {/* Botón ver perfil completo */}
@@ -103,7 +103,7 @@ const LeftPanel = ({ onOpenTab }) => {
           className={`w-full flex items-center gap-3 p-4 rounded-lg transition-all duration-200 ${
             hoveredSection === 'projects'
               ? 'bg-primary text-white shadow-md transform scale-105'
-              : 'bg-neutral-50 dark:bg-dark-card text-neutral-700 dark:text-dark-text hover:bg-neutral-100 dark:hover:bg-dark-card/80'
+              : 'bg-neutral-50 dark:bg-darkTheme-card text-neutral-700 dark:text-darkTheme-text hover:bg-neutral-100 dark:hover:bg-darkTheme-card/80'
           }`}
         >
           <div className={`p-2 rounded-lg ${
@@ -116,7 +116,7 @@ const LeftPanel = ({ onOpenTab }) => {
           <div className="flex-1 text-left">
             <p className="font-medium">Mis Proyectos</p>
             <p className={`text-xs ${
-              hoveredSection === 'projects' ? 'text-white/80' : 'text-neutral-500 dark:text-dark-muted'
+              hoveredSection === 'projects' ? 'text-white/80' : 'text-neutral-500 dark:text-darkTheme-muted'
             }`}>
               Gestiona tus proyectos de desarrollo
             </p>
@@ -131,7 +131,7 @@ const LeftPanel = ({ onOpenTab }) => {
           className={`w-full flex items-center gap-3 p-4 rounded-lg transition-all duration-200 ${
             hoveredSection === 'integrations'
               ? 'bg-secondary text-white shadow-md transform scale-105'
-              : 'bg-neutral-50 dark:bg-dark-card text-neutral-700 dark:text-dark-text hover:bg-neutral-100 dark:hover:bg-dark-card/80'
+              : 'bg-neutral-50 dark:bg-darkTheme-card text-neutral-700 dark:text-darkTheme-text hover:bg-neutral-100 dark:hover:bg-darkTheme-card/80'
           }`}
         >
           <div className={`p-2 rounded-lg ${
@@ -144,7 +144,7 @@ const LeftPanel = ({ onOpenTab }) => {
           <div className="flex-1 text-left">
             <p className="font-medium">Integraciones</p>
             <p className={`text-xs ${
-              hoveredSection === 'integrations' ? 'text-white/80' : 'text-neutral-500 dark:text-dark-muted'
+              hoveredSection === 'integrations' ? 'text-white/80' : 'text-neutral-500 dark:text-darkTheme-muted'
             }`}>
               Conecta tus herramientas favoritas
             </p>
@@ -153,7 +153,7 @@ const LeftPanel = ({ onOpenTab }) => {
 
         {/* Información de integraciones activas */}
         <div className="mt-6 p-4 bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10 rounded-lg border border-primary/20 dark:border-primary/30">
-          <h4 className="text-sm font-semibold text-neutral-700 dark:text-dark-text mb-2">
+          <h4 className="text-sm font-semibold text-neutral-700 dark:text-darkTheme-text mb-2">
             Integraciones Activas
           </h4>
           <div className="space-y-2">
@@ -161,14 +161,14 @@ const LeftPanel = ({ onOpenTab }) => {
               user.integrations.map((integration, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-2 text-xs text-neutral-600 dark:text-dark-muted"
+                  className="flex items-center gap-2 text-xs text-neutral-600 dark:text-darkTheme-muted"
                 >
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                   <span>{integration.name}</span>
                 </div>
               ))
             ) : (
-              <p className="text-xs text-neutral-500 dark:text-dark-muted">
+              <p className="text-xs text-neutral-500 dark:text-darkTheme-muted">
                 No hay integraciones configuradas
               </p>
             )}
@@ -177,7 +177,7 @@ const LeftPanel = ({ onOpenTab }) => {
       </nav>
 
       {/* Switch de tema y logout */}
-      <div className="p-4 border-t border-neutral-200 dark:border-dark-border space-y-3">
+      <div className="p-4 border-t border-neutral-200 dark:border-darkTheme-border space-y-3">
 
         {/* Switch de Tema */}
         <div className="flex items-center justify-between p-3 bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/5 dark:to-secondary/5 rounded-lg border border-primary/20 dark:border-primary/30">
@@ -187,7 +187,7 @@ const LeftPanel = ({ onOpenTab }) => {
             ) : (
               <Sun size={18} className="text-primary" />
             )}
-            <span className="text-sm font-medium text-neutral-700 dark:text-dark-text">
+            <span className="text-sm font-medium text-neutral-700 dark:text-darkTheme-text">
               {isDark ? 'Modo Oscuro' : 'Modo Claro'}
             </span>
           </div>

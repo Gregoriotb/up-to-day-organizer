@@ -51,6 +51,14 @@ Conecta tus herramientas favoritas:
 - Estadísticas de tareas
 - Gestión de equipo
 
+### 🌙 Tema Oscuro/Claro
+- Switch animado en panel de perfil
+- Transiciones suaves entre temas
+- Paleta oscura personalizada con tintes lavanda/rosa
+- Preferencia guardada en localStorage
+- Iconos Sol/Luna para indicar tema actual
+- Soporte completo en todos los componentes
+
 ## 🛠️ Stack Tecnológico
 
 ### Frontend

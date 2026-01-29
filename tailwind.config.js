@@ -37,8 +37,8 @@ export default {
           900: '#171717',
           950: '#0A0A0A',    // Extra oscuro para modo dark
         },
-        // Colores específicos para modo oscuro
-        dark: {
+        // Colores específicos para modo oscuro (renombrado para evitar conflicto)
+        darkTheme: {
           bg: '#0F0F1A',       // Fondo principal oscuro con tinte lavanda
           card: '#1A1A2E',     // Fondo de tarjetas
           border: '#2B2B40',   // Bordes

@@ -84,10 +84,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-neutral-100 dark:bg-dark-bg overflow-hidden transition-colors duration-200">
+    <div className="h-screen flex flex-col bg-neutral-100 dark:bg-darkTheme-bg overflow-hidden transition-colors duration-200">
 
       {/* Barra de navegación superior transparente */}
-      <nav className="bg-white/80 dark:bg-dark-card/80 backdrop-blur-sm border-b border-neutral-200 dark:border-dark-border px-4 py-3 flex items-center justify-between sticky top-0 z-50 shadow-sm">
+      <nav className="bg-white/80 dark:bg-darkTheme-card/80 backdrop-blur-sm border-b border-neutral-200 dark:border-darkTheme-border px-4 py-3 flex items-center justify-between sticky top-0 z-50 shadow-sm">
         {/* Botones de control de paneles */}
         <div className="flex items-center gap-2">
           {/* Botón panel izquierdo */}
@@ -96,7 +96,7 @@ const Dashboard = () => {
             className={`p-2 rounded-lg transition-all duration-200 ${
               leftPanelOpen
                 ? 'bg-primary text-white'
-                : 'bg-neutral-100 dark:bg-dark-card text-neutral-600 dark:text-dark-text hover:bg-neutral-200 dark:hover:bg-dark-card/80'
+                : 'bg-neutral-100 dark:bg-darkTheme-card text-neutral-600 dark:text-darkTheme-text hover:bg-neutral-200 dark:hover:bg-darkTheme-card/80'
             }`}
             title={leftPanelOpen ? 'Ocultar panel izquierdo' : 'Mostrar panel izquierdo'}
           >
@@ -109,7 +109,7 @@ const Dashboard = () => {
             className={`p-2 rounded-lg transition-all duration-200 mx-2 ${
               fullscreenMode
                 ? 'bg-secondary text-white'
-                : 'bg-neutral-100 dark:bg-dark-card text-neutral-600 dark:text-dark-text hover:bg-neutral-200 dark:hover:bg-dark-card/80'
+                : 'bg-neutral-100 dark:bg-darkTheme-card text-neutral-600 dark:text-darkTheme-text hover:bg-neutral-200 dark:hover:bg-darkTheme-card/80'
             }`}
             title={fullscreenMode ? 'Salir de pantalla completa' : 'Modo pantalla completa'}
           >
@@ -122,7 +122,7 @@ const Dashboard = () => {
             className={`p-2 rounded-lg transition-all duration-200 ${
               rightPanelOpen
                 ? 'bg-primary text-white'
-                : 'bg-neutral-100 dark:bg-dark-card text-neutral-600 dark:text-dark-text hover:bg-neutral-200 dark:hover:bg-dark-card/80'
+                : 'bg-neutral-100 dark:bg-darkTheme-card text-neutral-600 dark:text-darkTheme-text hover:bg-neutral-200 dark:hover:bg-darkTheme-card/80'
             }`}
             title={rightPanelOpen ? 'Ocultar panel derecho' : 'Mostrar panel derecho'}
           >

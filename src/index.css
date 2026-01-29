@@ -13,7 +13,7 @@
   }
 
   body {
-    @apply bg-neutral-50 dark:bg-dark-bg text-neutral-900 dark:text-dark-text font-sans;
+    @apply bg-neutral-50 dark:bg-darkTheme-bg text-neutral-900 dark:text-darkTheme-text font-sans;
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -38,16 +38,16 @@
 
   /* Input styles */
   .input-field {
-    @apply w-full px-4 py-2 border-2 border-neutral-200 dark:border-dark-border dark:bg-dark-card dark:text-dark-text rounded-lg focus:border-primary dark:focus:border-primary-light focus:outline-none transition-colors duration-200;
+    @apply w-full px-4 py-2 border-2 border-neutral-200 dark:border-darkTheme-border dark:bg-darkTheme-card dark:text-darkTheme-text rounded-lg focus:border-primary dark:focus:border-primary-light focus:outline-none transition-colors duration-200;
   }
 
   /* Card styles */
   .card {
-    @apply bg-white dark:bg-dark-card rounded-xl shadow-sm p-6 transition-shadow duration-200 hover:shadow-md dark:border dark:border-dark-border;
+    @apply bg-white dark:bg-darkTheme-card rounded-xl shadow-sm p-6 transition-shadow duration-200 hover:shadow-md dark:border dark:border-darkTheme-border;
   }
 
   /* Panel styles */
   .panel {
-    @apply bg-white/95 dark:bg-dark-card/95 backdrop-blur-sm shadow-xl transition-all duration-300;
+    @apply bg-white/95 dark:bg-darkTheme-card/95 backdrop-blur-sm shadow-xl transition-all duration-300;
   }
 }
