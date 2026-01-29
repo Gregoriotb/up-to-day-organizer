@@ -1,0 +1,63 @@
+# Dependencias
+node_modules/
+/.pnp
+.pnp.js
+
+# Producción
+dist/
+dist-ssr/
+*.local
+
+# Cache
+.vite/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Testing
+/coverage
+
+# Entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS específicos
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Archivos temporales problemáticos
+*.tmp
+*.temp
+nul
+
+# Backup files
+*.bak
+*.swp
+*~
+
+# Firebase (futuro)
+.firebase/
+firebase-debug.log
+firestore-debug.log
