@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import API_URL from '../config/api';
 
 /**
- * Contexto de autenticación
+ * Contexto de autenticación con API real
  * Maneja el estado global de autenticación del usuario
  */
 const AuthContext = createContext(null);
@@ -19,204 +20,214 @@ export const useAuth = () => {
 
 /**
  * Proveedor del contexto de autenticación
- * Envuelve la aplicación y proporciona funciones de autenticación
  */
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
   /**
    * Inicializa el estado de autenticación al cargar la aplicación
-   * Verifica si hay una sesión guardada en localStorage
    */
   useEffect(() => {
-    const initAuth = () => {
-      try {
-        const savedUser = localStorage.getItem('user');
-        if (savedUser) {
-          setUser(JSON.parse(savedUser));
+    const initAuth = async () => {
+      const savedToken = localStorage.getItem('token');
+
+      if (savedToken) {
+        try {
+          // Verificar token y obtener usuario
+          const response = await fetch(`${API_URL}/auth/me`, {
+            headers: {
+              'Authorization': `Bearer ${savedToken}`,
+            },
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            setUser(data);
+            setToken(savedToken);
+          } else {
+            // Token inválido, limpiar
+            localStorage.removeItem('token');
+            setToken(null);
+          }
+        } catch (error) {
+          console.error('Error al verificar token:', error);
+          localStorage.removeItem('token');
+          setToken(null);
         }
-      } catch (error) {
-        console.error('Error al cargar sesión:', error);
-      } finally {
-        setLoading(false);
       }
+
+      setLoading(false);
     };
 
     initAuth();
   }, []);
 
   /**
-   * Función de login tradicional
-   * @param {string} username - Nombre de usuario
-   * @param {string} password - Contraseña
+   * Función de login con API
    */
   const login = async (username, password) => {
     try {
-      // Simular llamada a API
-      // En producción, esto debería hacer una petición al backend
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch(`${API_URL}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
-      // Obtener usuarios registrados del localStorage
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const data = await response.json();
 
-      // Buscar usuario
-      const foundUser = users.find(
-        u => u.username === username && u.password === password
-      );
-
-      if (!foundUser) {
-        throw new Error('Usuario o contraseña incorrectos');
+      if (!response.ok) {
+        throw new Error(data.message || 'Error al iniciar sesión');
       }
 
-      // Crear objeto de usuario sin la contraseña
-      const { password: _, ...userWithoutPassword } = foundUser;
+      // Guardar token y usuario
+      localStorage.setItem('token', data.token);
+      setToken(data.token);
+      setUser(data);
 
-      // Guardar sesión
-      setUser(userWithoutPassword);
-      localStorage.setItem('user', JSON.stringify(userWithoutPassword));
-
-      return userWithoutPassword;
+      return data;
     } catch (error) {
       throw error;
     }
   };
 
   /**
-   * Función de registro de usuario
-   * @param {Object} userData - Datos del usuario a registrar
+   * Función de registro con API
    */
   const register = async (userData) => {
     try {
-      // Simular llamada a API
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch(`${API_URL}/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
 
-      // Obtener usuarios existentes
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const data = await response.json();
 
-      // Verificar si el usuario ya existe
-      const userExists = users.some(
-        u => u.username === userData.username || u.email === userData.email
-      );
-
-      if (userExists) {
-        throw new Error('El usuario o email ya está registrado');
+      if (!response.ok) {
+        throw new Error(data.message || 'Error al registrar usuario');
       }
 
-      // Crear nuevo usuario con ID y fecha de creación
-      const newUser = {
-        id: Date.now().toString(),
-        ...userData,
-        createdAt: new Date().toISOString(),
-        profileImage: null,
-        projects: [],
-        integrations: []
-      };
-
-      // Guardar usuario
-      users.push(newUser);
-      localStorage.setItem('users', JSON.stringify(users));
-
-      return newUser;
+      // No auto-login después del registro
+      // El usuario debe hacer login manualmente
+      return data;
     } catch (error) {
       throw error;
-    }
-  };
-
-  /**
-   * Función de login con Google
-   * Simula el flujo de OAuth con Google
-   */
-  const loginWithGoogle = async () => {
-    try {
-      // Simular autenticación con Google
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // Crear usuario de prueba con datos de Google
-      const googleUser = {
-        id: 'google_' + Date.now(),
-        username: 'usuario_google',
-        email: 'usuario@gmail.com',
-        firstName: 'Usuario',
-        lastName: 'Google',
-        profileImage: 'https://via.placeholder.com/150',
-        provider: 'google',
-        createdAt: new Date().toISOString(),
-        projects: [],
-        integrations: []
-      };
-
-      setUser(googleUser);
-      localStorage.setItem('user', JSON.stringify(googleUser));
-
-      return googleUser;
-    } catch (error) {
-      throw new Error('Error al iniciar sesión con Google');
-    }
-  };
-
-  /**
-   * Función de login con GitHub
-   * Simula el flujo de OAuth con GitHub
-   */
-  const loginWithGithub = async () => {
-    try {
-      // Simular autenticación con GitHub
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // Crear usuario de prueba con datos de GitHub
-      const githubUser = {
-        id: 'github_' + Date.now(),
-        username: 'usuario_github',
-        email: 'usuario@github.com',
-        firstName: 'Usuario',
-        lastName: 'GitHub',
-        profileImage: 'https://via.placeholder.com/150',
-        provider: 'github',
-        createdAt: new Date().toISOString(),
-        projects: [],
-        integrations: []
-      };
-
-      setUser(githubUser);
-      localStorage.setItem('user', JSON.stringify(githubUser));
-
-      return githubUser;
-    } catch (error) {
-      throw new Error('Error al iniciar sesión con GitHub');
     }
   };
 
   /**
    * Función de logout
-   * Limpia la sesión del usuario
    */
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user');
+    setToken(null);
+    localStorage.removeItem('token');
   };
 
   /**
-   * Función para actualizar datos del usuario
-   * @param {Object} updates - Datos a actualizar
+   * Actualizar datos del usuario
    */
-  const updateUser = (updates) => {
-    const updatedUser = { ...user, ...updates };
-    setUser(updatedUser);
-    localStorage.setItem('user', JSON.stringify(updatedUser));
+  const updateUser = async (updates) => {
+    try {
+      const response = await fetch(`${API_URL}/user/profile`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(updates),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Error al actualizar perfil');
+      }
+
+      setUser(data);
+      return data;
+    } catch (error) {
+      throw error;
+    }
   };
 
-  // Valor del contexto que se proporciona a los componentes
+  /**
+   * Subir imagen de perfil
+   */
+  const uploadProfileImage = async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await fetch(`${API_URL}/user/profile-image`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Error al subir imagen');
+      }
+
+      // Actualizar usuario con nueva imagen
+      setUser(prev => ({ ...prev, profileImage: data.profileImage }));
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  /**
+   * Subir imagen de portada
+   */
+  const uploadCoverImage = async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await fetch(`${API_URL}/user/cover-image`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Error al subir imagen');
+      }
+
+      // Actualizar usuario con nueva imagen
+      setUser(prev => ({ ...prev, coverImage: data.coverImage }));
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   const value = {
     user,
     loading,
+    token,
     login,
     register,
-    loginWithGoogle,
-    loginWithGithub,
     logout,
     updateUser,
-    isAuthenticated: !!user
+    uploadProfileImage,
+    uploadCoverImage,
+    isAuthenticated: !!user && !!token,
   };
 
   return (
