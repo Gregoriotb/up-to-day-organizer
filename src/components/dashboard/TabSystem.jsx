@@ -6,6 +6,7 @@ import CalendarView from './features/CalendarView';
 import FilesView from './features/FilesView';
 import ProjectsView from './features/ProjectsView';
 import IntegrationsView from './features/IntegrationsView';
+import ProfileEditView from './features/ProfileEditView';
 
 /**
  * Sistema de pestañas para el Dashboard
@@ -28,7 +29,8 @@ const TabSystem = ({ tabs, activeTab, onTabChange, onTabClose }) => {
       'Calendar': CalendarView,
       'Files': FilesView,
       'Projects': ProjectsView,
-      'Integrations': IntegrationsView
+      'Integrations': IntegrationsView,
+      'ProfileEdit': ProfileEditView
     };
 
     const Component = componentMap[currentTab.component] || HomeView;
