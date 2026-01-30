@@ -98,9 +98,9 @@ const RightPanel = ({ onOpenTab }) => {
         </div>
       </div>
 
-      {/* Grid de herramientas */}
+      {/* Botones de herramientas - Diseño ancho */}
       <div className="flex-1 overflow-y-auto p-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-3">
           {tools.map((tool) => {
             const Icon = tool.icon;
             const isHovered = hoveredTool === tool.id;
@@ -111,59 +111,44 @@ const RightPanel = ({ onOpenTab }) => {
                 onClick={() => openTool(tool)}
                 onMouseEnter={() => setHoveredTool(tool.id)}
                 onMouseLeave={() => setHoveredTool(null)}
-                className={`relative overflow-hidden rounded-xl p-4 transition-all duration-300 transform ${
-                  isHovered
-                    ? 'scale-105 shadow-xl'
-                    : 'scale-100 shadow-md hover:shadow-lg'
-                }`}
+                className="w-full group relative overflow-hidden rounded-lg transition-all duration-200"
               >
                 {/* Fondo con gradiente */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${tool.color} opacity-90`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-r ${tool.color} transition-opacity duration-200 ${
+                  isHovered ? 'opacity-100' : 'opacity-90'
+                }`}></div>
 
                 {/* Contenido */}
-                <div className="relative z-10 flex flex-col items-center justify-center text-white space-y-2">
-                  <Icon
-                    size={32}
-                    className={`transition-transform duration-300 ${
-                      isHovered ? 'scale-125' : 'scale-100'
-                    }`}
-                  />
-                  <span className="font-semibold text-sm">
-                    {tool.title}
-                  </span>
+                <div className="relative z-10 flex items-center gap-3 px-4 py-3 text-white">
+                  <div className={`p-2 bg-white/20 rounded-lg transition-transform duration-200 ${
+                    isHovered ? 'scale-110' : 'scale-100'
+                  }`}>
+                    <Icon size={20} />
+                  </div>
+                  <div className="flex-1 text-left">
+                    <h3 className="font-semibold text-sm">
+                      {tool.title}
+                    </h3>
+                    <p className="text-xs opacity-90">
+                      {tool.description}
+                    </p>
+                  </div>
+                  <div className={`transition-transform duration-200 ${
+                    isHovered ? 'translate-x-1' : 'translate-x-0'
+                  }`}>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
                 </div>
 
                 {/* Efecto de brillo al hover */}
                 {isHovered && (
-                  <div className="absolute inset-0 bg-white opacity-20 animate-pulse"></div>
+                  <div className="absolute inset-0 bg-white opacity-10"></div>
                 )}
               </button>
             );
           })}
-        </div>
-
-        {/* Información adicional */}
-        <div className="mt-6 space-y-3">
-          {tools.map((tool) => (
-            <div
-              key={`info-${tool.id}`}
-              className="bg-neutral-50 dark:bg-darkTheme-card rounded-lg p-3 border-l-4 border-primary/30 dark:border-primary/40 hover:border-primary dark:hover:border-primary-light transition-colors duration-200"
-            >
-              <div className="flex items-start gap-3">
-                <div className={`p-2 rounded-lg bg-gradient-to-br ${tool.color}`}>
-                  <tool.icon size={16} className="text-white" />
-                </div>
-                <div className="flex-1">
-                  <h4 className="text-sm font-semibold text-neutral-800 dark:text-darkTheme-text">
-                    {tool.title}
-                  </h4>
-                  <p className="text-xs text-neutral-600 dark:text-darkTheme-muted mt-1">
-                    {tool.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
 
         {/* Tips */}
