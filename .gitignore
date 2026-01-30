@@ -29,6 +29,11 @@ lerna-debug.log*
 .env.development.local
 .env.test.local
 .env.production.local
+server/.env
+
+# Uploads de usuario
+uploads/
+!uploads/.gitkeep
 
 # Editor directories and files
 .vscode/*
