@@ -7,7 +7,6 @@ import { BookOpen, CheckSquare, Lightbulb, Calendar, FolderOpen } from 'lucide-r
  * Incluye animación del icono del libro al hacer hover
  */
 const RightPanel = ({ onOpenTab }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [hoveredTool, setHoveredTool] = useState(null);
 
   /**
@@ -60,26 +59,7 @@ const RightPanel = ({ onOpenTab }) => {
   };
 
   return (
-    <aside className="h-full bg-white dark:bg-darkTheme-bg border-l border-neutral-200 dark:border-darkTheme-border flex flex-col shadow-lg relative transition-colors duration-200">
-
-      {/* Botón de toggle con icono de libro */}
-      <div className="absolute -left-6 top-8 z-10">
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          onMouseEnter={() => setIsExpanded(true)}
-          className={`bg-white dark:bg-darkTheme-card border-2 border-primary dark:border-primary-light rounded-l-xl p-3 shadow-lg transition-all duration-300 transform hover:scale-110 ${
-            isExpanded ? 'bg-primary dark:bg-primary-light' : 'hover:bg-primary-light dark:hover:bg-primary'
-          }`}
-          title="Herramientas"
-        >
-          <BookOpen
-            size={24}
-            className={`transition-all duration-300 ${
-              isExpanded ? 'text-white rotate-0' : 'text-primary'
-            }`}
-          />
-        </button>
-      </div>
+    <aside className="h-full bg-white dark:bg-darkTheme-bg border-l border-neutral-200 dark:border-darkTheme-border flex flex-col shadow-lg transition-colors duration-200">
 
       {/* Header del panel */}
       <div className="p-6 border-b border-neutral-200 dark:border-darkTheme-border bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10">
