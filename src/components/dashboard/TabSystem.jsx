@@ -1,5 +1,8 @@
 import { X } from 'lucide-react';
 import HomeView from './features/HomeView';
+import FinanceView from './features/FinanceView';
+import EmailView from './features/EmailView';
+import PasswordView from './features/PasswordView';
 import TasksView from './features/TasksView';
 import IdeasView from './features/IdeasView';
 import CalendarView from './features/CalendarView';
@@ -24,6 +27,9 @@ const TabSystem = ({ tabs, activeTab, onTabChange, onTabClose }) => {
     // Mapeo de componentes según el tipo de vista
     const componentMap = {
       'Home': HomeView,
+      'Finance': FinanceView,
+      'Email': EmailView,
+      'Password': PasswordView,
       'Tasks': TasksView,
       'Ideas': IdeasView,
       'Calendar': CalendarView,

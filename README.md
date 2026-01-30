@@ -143,7 +143,7 @@ cd up-to-day-organizer
 npm install
 ```
 
-⚠️ **Nota Importante:** Si experimentas errores con Tailwind CSS o PostCSS, consulta la [Guía de Solución de Problemas](TROUBLESHOOTING.md).
+⚠️ **Nota Importante:** Si experimentas errores con Tailwind CSS o PostCSS, consulta la [Guía de Solución de Problemas](docs/development/TROUBLESHOOTING.md).
 
 3. **Iniciar el servidor de desarrollo**
 ```bash
@@ -249,11 +249,73 @@ npm run preview      # Preview de la build
 - [ ] Notificaciones push
 - [ ] Modo oscuro
 
-## 📚 Documentación Adicional
+## 📚 Documentación
 
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Arquitectura detallada del proyecto
-- **[DEVELOPMENT.md](DEVELOPMENT.md)** - Guía completa para desarrolladores
-- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Solución de problemas comunes
+### 📖 Índice Completo
+Toda la documentación está organizada en la carpeta [`docs/`](docs/)
+
+**[📚 Ver Índice de Documentación Completa](docs/README.md)**
+
+### 📦 Releases y Versiones
+- **[VERSION_NOTES.md](docs/releases/VERSION_NOTES.md)** - Notas de versión v2.0.0-alpha (Etapa 1/3)
+- **[CHANGELOG.md](docs/releases/CHANGELOG.md)** - Historial completo de cambios
+
+### 💻 Para Desarrolladores
+- **[DEVELOPMENT.md](docs/development/DEVELOPMENT.md)** - Guía completa para desarrolladores
+- **[ARCHITECTURE.md](docs/development/ARCHITECTURE.md)** - Arquitectura detallada del proyecto
+- **[TROUBLESHOOTING.md](docs/development/TROUBLESHOOTING.md)** - Solución de problemas comunes
+
+### ⚙️ Configuración
+- **[GIT_SETUP.md](docs/setup/GIT_SETUP.md)** - Configuración de Git y control de versiones
+
+---
+
+## 🎉 Versión 2.0.0-alpha (Etapa 1/3)
+
+**⚠️ IMPORTANTE:** Esta es una versión alpha en desarrollo. Ver [`VERSION_NOTES.md`](docs/releases/VERSION_NOTES.md) para detalles completos.
+
+### ✨ Nuevos Módulos (Etapa 1 - COMPLETADA)
+
+#### 💰 Finanzas
+- Control completo de ingresos y gastos
+- 17 categorías predefinidas
+- Estadísticas y análisis de tendencias
+- Dashboard con gráficos
+
+#### 📧 Correos
+- Gestor tipo Thunderbird
+- Multi-cuenta (Gmail, Outlook, Yahoo, iCloud)
+- Sincronización IMAP/SMTP
+- Búsqueda y composición de emails
+
+#### 🔐 Contraseñas
+- Bóveda segura con encriptación AES-256-GCM
+- Generador de contraseñas
+- Dashboard de seguridad con score (0-100%)
+- Análisis de fortaleza
+
+#### 💡 Ideas (Actualizado)
+- Sistema completo con backend
+- Favoritos, pin y checklist
+- 8 categorías y 4 prioridades
+- Operaciones en lote
+
+### 🔒 Seguridad
+- Encriptación AES-256-GCM
+- Autenticación JWT
+- Protección de rutas
+- Variables de entorno seguras
+
+### 📊 Estadísticas de Desarrollo
+- **15,000+** líneas de código agregadas
+- **6** modelos de datos nuevos
+- **50+** endpoints API
+- **4** módulos completos implementados
+
+### 🔜 Próximas Etapas
+- **Etapa 2:** Integración de APIs (Próxima)
+- **Etapa 3:** Refinamiento Final (Futura)
+- **Versión Estable:** 2.0.0 (Al completar Etapa 3)
 
 ## 📄 Licencia
 

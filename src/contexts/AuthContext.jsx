@@ -1,6 +1,9 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import API_URL from '../config/api';
 
+// URL base del servidor (sin /api) para cargar imágenes
+const BASE_URL = API_URL.replace('/api', '');
+
 /**
  * Contexto de autenticación con API real
  * Maneja el estado global de autenticación del usuario
@@ -44,6 +47,20 @@ export const AuthProvider = ({ children }) => {
 
           if (response.ok) {
             const data = await response.json();
+            console.log('🔍 Datos del usuario desde /auth/me:', data);
+            console.log('📍 BASE_URL:', BASE_URL);
+
+            // Convertir rutas de imágenes a URLs completas
+            if (data.profileImage && !data.profileImage.startsWith('http')) {
+              console.log('🖼️  Convirtiendo profileImage:', data.profileImage, '->', `${BASE_URL}${data.profileImage}`);
+              data.profileImage = `${BASE_URL}${data.profileImage}`;
+            }
+            if (data.coverImage && !data.coverImage.startsWith('http')) {
+              console.log('🖼️  Convirtiendo coverImage:', data.coverImage, '->', `${BASE_URL}${data.coverImage}`);
+              data.coverImage = `${BASE_URL}${data.coverImage}`;
+            }
+
+            console.log('✅ Usuario final con URLs completas:', data);
             setUser(data);
             setToken(savedToken);
           } else {
@@ -81,6 +98,14 @@ export const AuthProvider = ({ children }) => {
 
       if (!response.ok) {
         throw new Error(data.message || 'Error al iniciar sesión');
+      }
+
+      // Convertir rutas de imágenes a URLs completas
+      if (data.profileImage && !data.profileImage.startsWith('http')) {
+        data.profileImage = `${BASE_URL}${data.profileImage}`;
+      }
+      if (data.coverImage && !data.coverImage.startsWith('http')) {
+        data.coverImage = `${BASE_URL}${data.coverImage}`;
       }
 
       // Guardar token y usuario
@@ -179,8 +204,11 @@ export const AuthProvider = ({ children }) => {
         throw new Error(data.message || 'Error al subir imagen');
       }
 
-      // Actualizar usuario con nueva imagen
-      setUser(prev => ({ ...prev, profileImage: data.profileImage }));
+      // Actualizar usuario con nueva imagen (URL completa)
+      const fullImageUrl = data.profileImage.startsWith('http')
+        ? data.profileImage
+        : `${BASE_URL}${data.profileImage}`;
+      setUser(prev => ({ ...prev, profileImage: fullImageUrl }));
       return data;
     } catch (error) {
       throw error;
@@ -209,8 +237,11 @@ export const AuthProvider = ({ children }) => {
         throw new Error(data.message || 'Error al subir imagen');
       }
 
-      // Actualizar usuario con nueva imagen
-      setUser(prev => ({ ...prev, coverImage: data.coverImage }));
+      // Actualizar usuario con nueva imagen (URL completa)
+      const fullImageUrl = data.coverImage.startsWith('http')
+        ? data.coverImage
+        : `${BASE_URL}${data.coverImage}`;
+      setUser(prev => ({ ...prev, coverImage: fullImageUrl }));
       return data;
     } catch (error) {
       throw error;

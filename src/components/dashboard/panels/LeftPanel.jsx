@@ -15,6 +15,9 @@ const LeftPanel = ({ onOpenTab }) => {
   const [hoveredSection, setHoveredSection] = useState(null);
   const [showIntegrations, setShowIntegrations] = useState(true);
 
+  // Debug: Log user data
+  console.log('👤 LeftPanel - Usuario actual:', user);
+
   /**
    * Maneja el logout del usuario
    */

@@ -50,4 +50,42 @@
   .panel {
     @apply bg-white/95 dark:bg-darkTheme-card/95 backdrop-blur-sm shadow-xl transition-all duration-300;
   }
+
+  /* Range slider styles */
+  input[type="range"].slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  input[type="range"].slider-thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #5A67D8;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  input[type="range"].slider-thumb::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #5A67D8;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  input[type="range"].slider-thumb::-webkit-slider-thumb:hover {
+    background: #4C51BF;
+    transform: scale(1.1);
+  }
+
+  input[type="range"].slider-thumb::-moz-range-thumb:hover {
+    background: #4C51BF;
+    transform: scale(1.1);
+  }
 }

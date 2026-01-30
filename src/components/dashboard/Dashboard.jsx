@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { BookOpen } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import LeftPanel from './panels/LeftPanel';
@@ -17,15 +17,41 @@ const Dashboard = () => {
   const [rightPanelOpen, setRightPanelOpen] = useState(true);
   const [fullscreenMode, setFullscreenMode] = useState(false);
 
-  // Estado para las pestañas abiertas
-  const [openTabs, setOpenTabs] = useState([
-    { id: 'home', title: 'Inicio', component: 'Home' }
-  ]);
-  const [activeTab, setActiveTab] = useState('home');
+  // Estado para las pestañas abiertas (cargar desde localStorage)
+  const [openTabs, setOpenTabs] = useState(() => {
+    const saved = localStorage.getItem('dashboardTabs');
+    if (saved) {
+      try {
+        const tabs = JSON.parse(saved);
+        return tabs.length > 0 ? tabs : [{ id: 'home', title: 'Inicio', component: 'Home' }];
+      } catch (error) {
+        console.error('Error al cargar pestañas:', error);
+      }
+    }
+    return [{ id: 'home', title: 'Inicio', component: 'Home' }];
+  });
+
+  const [activeTab, setActiveTab] = useState(() => {
+    return localStorage.getItem('dashboardActiveTab') || 'home';
+  });
 
   // Estados para modal de confirmación y doble click
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const clickTimeoutRef = useRef(null);
+
+  /**
+   * Guardar estado de pestañas en localStorage cuando cambien
+   */
+  useEffect(() => {
+    localStorage.setItem('dashboardTabs', JSON.stringify(openTabs));
+  }, [openTabs]);
+
+  /**
+   * Guardar pestaña activa en localStorage cuando cambie
+   */
+  useEffect(() => {
+    localStorage.setItem('dashboardActiveTab', activeTab);
+  }, [activeTab]);
 
   /**
    * Alterna la visibilidad del panel izquierdo

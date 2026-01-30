@@ -1,10 +1,15 @@
 import multer from 'multer';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Configurar almacenamiento
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Carpeta donde se guardarán las imágenes
+    const uploadsPath = path.join(__dirname, '../../../uploads');
+    cb(null, uploadsPath);
   },
   filename: function (req, file, cb) {
     // Generar nombre único: timestamp + nombre original

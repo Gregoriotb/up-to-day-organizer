@@ -6,6 +6,10 @@ import { fileURLToPath } from 'url';
 import connectDB from './config/database.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import financeRoutes from './routes/financeRoutes.js';
+import emailRoutes from './routes/emailRoutes.js';
+import passwordRoutes from './routes/passwordRoutes.js';
+import ideaRoutes from './routes/ideaRoutes.js';
 
 // Configurar variables de entorno
 dotenv.config();
@@ -20,17 +24,33 @@ connectDB();
 // Inicializar Express
 const app = express();
 
-// Middlewares
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Middlewares CORS configuration
+const corsOptions = {
+  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Servir archivos estáticos (uploads)
-app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
+// Servir archivos estáticos (uploads) con headers CORS específicos
+const uploadsPath = path.join(__dirname, '../../uploads');
+app.use('/uploads', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Cache-Control', 'public, max-age=3600');
+  next();
+}, express.static(uploadsPath));
 
 // Rutas
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/finance', financeRoutes);
+app.use('/api/email', emailRoutes);
+app.use('/api/password', passwordRoutes);
+app.use('/api/idea', ideaRoutes);
 
 // Ruta de prueba
 app.get('/api/health', (req, res) => {

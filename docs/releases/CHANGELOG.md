@@ -5,6 +5,138 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+---
+
+## [2.0.0-alpha] - 2026-01-30
+
+### 🎨 ETAPA 1: ACTUALIZACIÓN GRÁFICA (COMPLETADA)
+
+**⚠️ IMPORTANTE:** Esta es la **primera parte de una actualización mayor** dividida en tres etapas.
+Esta versión NO es definitiva. Ver `VERSION_NOTES.md` para detalles completos.
+
+### ✨ Agregado
+
+#### Backend - Nuevos Módulos
+
+**💰 Módulo de Finanzas**
+- Modelo `Transaction` con 17 categorías (5 ingresos, 12 gastos)
+- Controlador con 8 funciones: CRUD, summary, breakdown, stats, trends
+- Rutas RESTful en `/api/finance`
+- Estadísticas y análisis de tendencias
+
+**📧 Módulo de Correos**
+- Modelo `EmailAccount` con encriptación AES-256
+- Modelo `EmailMessage` con soporte completo de metadatos
+- Sincronización IMAP/SMTP con nodemailer
+- Soporte para Gmail, Outlook, Yahoo, iCloud
+- 11 funciones de gestión y búsqueda
+- Rutas en `/api/email`
+
+**🔐 Módulo de Contraseñas**
+- Modelo `Password` con encriptación AES-256-GCM
+- Generador de contraseñas seguras
+- Análisis de fortaleza (weak, medium, strong, very-strong)
+- Dashboard de seguridad con score (0-100%)
+- 13 funciones incluyendo import/export
+- Rutas en `/api/password`
+
+**💡 Módulo de Ideas**
+- Modelo `Idea` con 8 categorías y 4 prioridades
+- Estados: draft, active, archived, completed
+- Sistema de favoritos y fijado (pin)
+- Checklist integrado
+- 15 funciones con operaciones en lote
+- Rutas en `/api/idea`
+
+#### Frontend - Nuevos Componentes
+
+**FinanceView.jsx** (670 líneas)
+- 3 pestañas: Overview, Transactions, Add
+- Desglose por categorías con porcentajes
+- Formulario completo con validación
+- Formateo de moneda y fechas
+- Integración completa con API
+
+**EmailView.jsx** (900+ líneas)
+- 5 vistas: Accounts, Add Account, Inbox, Email Detail, Compose
+- Interfaz tipo Thunderbird
+- Sincronización manual y búsqueda
+- Vista de adjuntos
+- Compositor completo
+
+**PasswordView.jsx** (1000+ líneas)
+- 5 vistas: Vault, Details, Add/Edit, Generator, Security Dashboard
+- Copiar al portapapeles con feedback
+- Generador personalizable (8-32 caracteres)
+- Análisis de seguridad en tiempo real
+- Distribución por fortaleza y categoría
+
+**IdeasView.jsx** (535 líneas - Actualizado)
+- Integración completa con backend
+- Sistema de favoritos y pin
+- Filtros avanzados por estado
+- Edición inline
+- Estadísticas en tiempo real
+
+#### Seguridad
+
+**Encriptación Implementada**
+- AES-256-GCM para contraseñas con auth tags
+- IVs únicos por registro
+- Derivación de claves con scrypt
+- Variables de entorno: `MASTER_KEY_SECRET`, `EMAIL_ENCRYPTION_KEY`
+
+**Autenticación**
+- Middleware `protect` en todas las rutas sensibles
+- Validación de ownership en operaciones
+- JWT con 7 días de expiración
+
+### 🔧 Modificado
+
+**server/src/server.js**
+- Integradas 4 nuevas rutas: `/api/finance`, `/api/email`, `/api/password`, `/api/idea`
+- Configuración CORS actualizada
+- Límite de payload a 10mb
+
+**RightPanel.jsx**
+- Agregados 4 botones de herramientas con gradientes personalizados
+- Finanzas (emerald), Correos (cyan), Contraseñas (indigo-purple)
+
+**TabSystem.jsx**
+- Registrados 4 nuevos componentes en componentMap
+- Animaciones mejoradas
+
+### 📦 Dependencias Agregadas
+
+**Backend**
+- `nodemailer` - Envío SMTP
+- `imap` - Conexión IMAP
+- `mailparser` - Parseo de emails
+
+### 📊 Estadísticas
+
+- **Líneas de código agregadas:** ~15,000+
+- **Modelos nuevos:** 6 (Transaction, EmailAccount, EmailMessage, Password, Idea, User actualizado)
+- **Controladores nuevos:** 4 (financeController, emailController, passwordController, ideaController)
+- **Endpoints API:** 50+ nuevos
+- **Componentes React:** 4 nuevos + 1 actualizado
+
+### 🔜 Próximas Etapas
+
+**Etapa 2: Integración de APIs** (Próxima)
+- Integraciones con servicios externos
+- Sistema de notificaciones push
+- Webhooks y automatizaciones
+- Sincronización multi-dispositivo
+
+**Etapa 3: Refinamiento Final** (Futura)
+- Testing completo
+- Optimizaciones de rendimiento
+- Documentación completa
+- **Versión estable 2.0.0**
+
+---
+
 ## [1.2.0] - 2026-01-29
 
 ### ✅ Agregado

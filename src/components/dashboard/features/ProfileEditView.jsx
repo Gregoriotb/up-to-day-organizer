@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { User, Camera, Save, Upload } from 'lucide-react';
 import { useAuth } from '../../../contexts/AuthContext';
+import ImageCropModal from './ImageCropModal';
 
 /**
  * Vista de edición de perfil
  * Permite al usuario modificar su foto de perfil, portada, nombre y bio
  */
 const ProfileEditView = () => {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, uploadProfileImage, uploadCoverImage } = useAuth();
 
   // Estados para los campos editables
   const [formData, setFormData] = useState({
@@ -25,6 +26,13 @@ const ProfileEditView = () => {
 
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
+
+  // Estados para el modal de recorte
+  const [cropModal, setCropModal] = useState({
+    isOpen: false,
+    imageType: null,
+    imageSrc: null
+  });
 
   /**
    * Maneja los cambios en los inputs de texto
@@ -55,26 +63,51 @@ const ProfileEditView = () => {
         return;
       }
 
-      // Crear preview
+      // Leer archivo y abrir modal de recorte
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPreviewImages(prev => ({
-          ...prev,
-          [imageType]: reader.result
-        }));
-        setFormData(prev => ({
-          ...prev,
-          [`${imageType}Image`]: reader.result
-        }));
+        setCropModal({
+          isOpen: true,
+          imageType,
+          imageSrc: reader.result
+        });
       };
       reader.readAsDataURL(file);
     }
   };
 
   /**
+   * Maneja el resultado del recorte de imagen
+   */
+  const handleCropComplete = (croppedImage) => {
+    const { imageType } = cropModal;
+
+    // Actualizar preview e imágenes
+    setPreviewImages(prev => ({
+      ...prev,
+      [imageType]: croppedImage
+    }));
+    setFormData(prev => ({
+      ...prev,
+      [`${imageType}Image`]: croppedImage
+    }));
+
+    // Cerrar modal
+    setCropModal({ isOpen: false, imageType: null, imageSrc: null });
+  };
+
+  /**
+   * Cierra el modal de recorte
+   */
+  const handleCloseCropModal = () => {
+    setCropModal({ isOpen: false, imageType: null, imageSrc: null });
+  };
+
+  /**
    * Guarda los cambios del perfil
    */
   const handleSave = async () => {
+    console.log('🔄 Iniciando guardado de perfil...');
     setIsSaving(true);
     setMessage({ type: '', text: '' });
 
@@ -84,14 +117,39 @@ const ProfileEditView = () => {
         throw new Error('El nombre y apellido son obligatorios');
       }
 
-      // Simular guardado (aquí se conectaría con el backend)
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log('📊 FormData:', { ...formData, profileImage: formData.profileImage ? 'base64...' : null, coverImage: formData.coverImage ? 'base64...' : null });
 
-      // Actualizar contexto de usuario
-      updateUser(formData);
+      // 1. Subir imagen de portada si cambió
+      if (formData.coverImage && formData.coverImage.startsWith('data:image')) {
+        console.log('📤 Subiendo imagen de portada...');
+        const blob = await fetch(formData.coverImage).then(r => r.blob());
+        const file = new File([blob], 'cover.jpg', { type: 'image/jpeg' });
+        console.log('📦 Archivo de portada:', file.size, 'bytes');
+        const result = await uploadCoverImage(file);
+        console.log('✅ Portada subida:', result);
+      }
+
+      // 2. Subir imagen de perfil si cambió
+      if (formData.profileImage && formData.profileImage.startsWith('data:image')) {
+        console.log('📤 Subiendo imagen de perfil...');
+        const blob = await fetch(formData.profileImage).then(r => r.blob());
+        const file = new File([blob], 'profile.jpg', { type: 'image/jpeg' });
+        console.log('📦 Archivo de perfil:', file.size, 'bytes');
+        const result = await uploadProfileImage(file);
+        console.log('✅ Perfil subido:', result);
+      }
+
+      // 3. Actualizar datos de texto del perfil
+      console.log('📝 Actualizando datos de texto...');
+      await updateUser({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        bio: formData.bio,
+      });
 
       setMessage({ type: 'success', text: '¡Perfil actualizado exitosamente!' });
     } catch (error) {
+      console.error('❌ Error al guardar:', error);
       setMessage({ type: 'error', text: error.message || 'Error al guardar los cambios' });
     } finally {
       setIsSaving(false);
@@ -324,6 +382,17 @@ const ProfileEditView = () => {
 
         </div>
       </div>
+
+      {/* Modal de recorte de imagen */}
+      {cropModal.isOpen && (
+        <ImageCropModal
+          image={cropModal.imageSrc}
+          onClose={handleCloseCropModal}
+          onCropComplete={handleCropComplete}
+          aspectRatio={cropModal.imageType === 'cover' ? 16 / 5 : 1}
+          cropShape={cropModal.imageType === 'profile' ? 'round' : 'rect'}
+        />
+      )}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BookOpen, CheckSquare, Lightbulb, Calendar, FolderOpen } from 'lucide-react';
+import { BookOpen, CheckSquare, Lightbulb, Calendar, FolderOpen, DollarSign, Mail, Lock } from 'lucide-react';
 
 /**
  * Panel derecho del Dashboard (Sidebar con herramientas)
@@ -13,6 +13,30 @@ const RightPanel = ({ onOpenTab }) => {
    * Herramientas disponibles en el panel
    */
   const tools = [
+    {
+      id: 'finance',
+      title: 'Finanzas',
+      description: 'Control de ingresos y gastos',
+      icon: DollarSign,
+      color: 'from-emerald-400 to-green-600',
+      component: 'Finance'
+    },
+    {
+      id: 'email',
+      title: 'Correos',
+      description: 'Gestor de correos electrónicos',
+      icon: Mail,
+      color: 'from-cyan-400 to-blue-600',
+      component: 'Email'
+    },
+    {
+      id: 'passwords',
+      title: 'Contraseñas',
+      description: 'Bóveda segura de contraseñas',
+      icon: Lock,
+      color: 'from-indigo-400 to-purple-600',
+      component: 'Password'
+    },
     {
       id: 'tasks',
       title: 'Tareas',

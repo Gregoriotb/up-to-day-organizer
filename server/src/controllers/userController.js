@@ -1,4 +1,10 @@
 import User from '../models/User.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * @desc    Actualizar perfil de usuario
@@ -51,7 +57,16 @@ export const uploadProfileImage = async (req, res) => {
     const user = await User.findById(req.user._id);
 
     if (user) {
-      // Guardar ruta de la imagen
+      // Eliminar imagen anterior si existe
+      if (user.profileImage) {
+        const oldImagePath = path.join(__dirname, '../../..', user.profileImage);
+        if (fs.existsSync(oldImagePath)) {
+          fs.unlinkSync(oldImagePath);
+          console.log('🗑️  Imagen de perfil anterior eliminada:', oldImagePath);
+        }
+      }
+
+      // Guardar ruta de la nueva imagen
       user.profileImage = `/uploads/${req.file.filename}`;
       await user.save();
 
@@ -81,7 +96,16 @@ export const uploadCoverImage = async (req, res) => {
     const user = await User.findById(req.user._id);
 
     if (user) {
-      // Guardar ruta de la imagen
+      // Eliminar imagen anterior si existe
+      if (user.coverImage) {
+        const oldImagePath = path.join(__dirname, '../../..', user.coverImage);
+        if (fs.existsSync(oldImagePath)) {
+          fs.unlinkSync(oldImagePath);
+          console.log('🗑️  Imagen de portada anterior eliminada:', oldImagePath);
+        }
+      }
+
+      // Guardar ruta de la nueva imagen
       user.coverImage = `/uploads/${req.file.filename}`;
       await user.save();
 
